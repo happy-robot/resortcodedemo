@@ -8,10 +8,15 @@ Initially it has been written in play framework 1.3. Now I am rewriting the proj
 
 ### Using technologies:
 * spring-boot
+* spring-data
+* spring-security
 * thymeleaf
 * hibernate
 * postgresql
 * junit
+* vue.js
+* gulp
+* sass
 
 ---
 
