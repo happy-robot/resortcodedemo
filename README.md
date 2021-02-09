@@ -44,8 +44,8 @@
 Бизнес-логика не зависит от деталей реализации. Например, можно заменить PostgreSQL на MongoDB без необходимости редактирования кода бизнес-логики. 
 
 
-![Image of arch](https://github.com/happy-robot/resort/blob/master/docs/images/clean-architecture-diagram-1.png)
-![Image of arch2](https://github.com/happy-robot/resort/blob/master/docs/images/clean-architecture-diagram-2.png)
+![Image of arch](https://github.com/happy-robot/resortcodedemo/blob/master/docs/images/clean-architecture-diagram-1.png)
+![Image of arch2](https://github.com/happy-robot/resortcodedemo/blob/master/docs/images/clean-architecture-diagram-2.png)
 #### Акторы
 Есть три актора - арендадатель, арендатор, модератор. Пишем для каждого актора отдельный код.
 #### Покрытие тестами
