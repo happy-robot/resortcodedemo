@@ -31,14 +31,17 @@
 
 ### Технические детали
 #### Микросервисы
-На текущий момент приложение состоит из двух сервисов, которые взаимодействуют через kafka (сервис пережатия загружаемых изображений и сервис с html, бизнес логикой).
+На текущий момент приложение состоит из двух сервисов, которые взаимодействуют через kafka 
+* сервис обработки изображений 
+* основной сервис с бизнес логикой и html).
 #### SOLID
 Соблюдаются правила SOLID. Код делится на "слои" - бизнес-логика, детали реализации. 
 
-[Бизнес-логика](https://github.com/happy-robot/resortcodedemo/tree/master/src/main/java/kz/kaps/resort/core): сущности, варианты использования.
-Детали реализации: [взаимодействие с БД](https://github.com/happy-robot/resortcodedemo/tree/master/src/main/java/kz/kaps/resort/dataproviders/database), [взаимодействие с вебом](https://github.com/happy-robot/resortcodedemo/tree/master/src/main/java/kz/kaps/resort/entrypoints), взаимодействие со сторонними сервисами - [обработка изображений](https://github.com/happy-robot/resortcodedemo/tree/master/src/main/java/kz/kaps/resort/dataproviders/image), [отправка SMS сообщений](https://github.com/happy-robot/resortcodedemo/tree/master/src/main/java/kz/kaps/resort/dataproviders/sms), [фреймворк](https://github.com/happy-robot/resortcodedemo/tree/master/src/main/java/kz/kaps/resort/configuration). 
+* [Бизнес-логика](https://github.com/happy-robot/resortcodedemo/tree/master/src/main/java/kz/kaps/resort/core): сущности, варианты использования.
 
-Бизнес-логика не зависят от деталей реализации. Например, можно заменить PostgreSQL на MongoDB без необходимости редактирования кода бизнес-логики. 
+* Детали реализации: [взаимодействие с БД](https://github.com/happy-robot/resortcodedemo/tree/master/src/main/java/kz/kaps/resort/dataproviders/database), [с вебом](https://github.com/happy-robot/resortcodedemo/tree/master/src/main/java/kz/kaps/resort/entrypoints) и со сторонними сервисами, [фреймворк](https://github.com/happy-robot/resortcodedemo/tree/master/src/main/java/kz/kaps/resort/configuration). 
+
+Бизнес-логика не зависит от деталей реализации. Например, можно заменить PostgreSQL на MongoDB без необходимости редактирования кода бизнес-логики. 
 
 
 ![Image of arch](https://github.com/happy-robot/resort/blob/master/docs/images/clean-architecture-diagram-1.png)
@@ -56,9 +59,14 @@
 
 
 ### Достижения при разработке проекта
-#### Знаю как пользоваться инструментом Figma
+#### Повысил свою техническую экспертизу и продолжаю это делать
+При работе с сайтом ставлю себе задачи, с которыми не сталкиваюсь на основном месте работы.
+#### Знаю, насколько важно понимать ценность продукта
+Программный продукт должен представлять ценность для пользователей. Необходимо определять насколько проектируемый функционал будет нужен пользователю. Необходимо знать проблемы пользователей и находить решения данных проблем.
+#### Повысил экспертизу в UX/UI
 Для создания дизайна страниц сайта использую Figma. На текущий момент разработано 70% страниц. По запросу могу продемонстировать наработки.
 #### Умею продвигать сайт в поисковых системах
 Были настроены google analytics, google adwords. За первые 6 месяцев по некоторым запросам удалось продвинуть сайт на первую страницу в google и yandex.
-#### Знаю что такое ценность продукта
-Программный продукт должен представлять ценность для пользователей. Необходимо знать целевую аудиторию, проблемы пользователей и найти решения данных проблем. В противном случае можно впустую потратить ресурсы.
+#### Знай свою целевую аудиторию
+Удалось непосредственно поработать с конечными пользователями - как с арендодателями так и с арендаторами, увидеть проблему глазами пользователей.
+
