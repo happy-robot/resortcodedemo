@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="~{general :: meta}"></th:block>
+    <th:block th:include="~{general :: headerfiles}"></th:block>
+</head>
+<body class="ecommerce">
+<div th:insert="~{header :: header}"></div>
+
+
+<div class="main">
+    <div class="container">
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+            <!-- BEGIN CONTENT -->
+            <div class="col-md-12 col-sm-12 col-xs-12 page-404">
+
+                <div class=" number">
+                    404
+                </div>
+                <div class=" details">
+                    <h3 th:text="#{views.error.404.header}"></h3>
+                    <p th:text="#{views.error.404.description}"></p>
+                </div>
+
+            </div>
+            <!-- END CONTENT -->
+        </div>
+    </div>
+</div>
+
+<div th:insert="~{footer :: footer}"></div>
+
+<div th:insert="~{googleAnalytics :: googleAnalytics}"></div>
+
+</body>
+</html>

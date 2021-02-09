@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Title -->
+    <title>Unify - Responsive Website Template</title>
+
+    <!-- Required Meta Tags Always Come First -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" th:href="@{/favicon.ico}">
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,900">
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/bootstrap/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/icon-line/css/simple-line-icons.css}">
+
+    <!-- CSS Unify -->
+    <!--<link rel="stylesheet" th:href="@{/unify/assets/css/unify-core.css}">-->
+    <!--<link rel="stylesheet" th:href="@{/unify/assets/css/unify-components.css}">-->
+    <!--<link rel="stylesheet" th:href="@{/unify/assets/css/unify-globals.css}">-->
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/icon-awesome/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/icon-line-pro/style.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/icon-hs/style.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/hamburgers/hamburgers.min.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/hs-megamenu/src/hs.megamenu.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.min.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/animate.css}">
+
+    <link rel="stylesheet" th:href="@{/javascripts/dropzone-5.7.0/basic.min.css}">
+    <link rel="stylesheet" th:href="@{/javascripts/dropzone-5.7.0/dropzone.min.css}">
+
+    <!-- CSS Unify Theme -->
+    <link rel="stylesheet" th:href="@{/unify/e-commerce/assets/css/styles.e-commerce.css}">
+
+    <!-- CSS Customization -->
+<!--    <link rel="stylesheet" th:href="@{/unify/assets/css/custom.css}">-->
+    <link rel="stylesheet" th:href="@{/css/app.min.css}">
+
+</head>
+
+<body>
+<main>
+    <th:block th:include="~{header :: header}"></th:block>
+
+    <div class="container g-pb-40 g-mt-15 g-mt-0--md g-py-100--md">
+        <svg viewBox="0 0 24 24" width="1em" height="1em" class="mobile-nav-item d-inline-block d-sm-none" onclick="goHistoryBack()">
+            <path fill="currentColor" fill-rule="evenodd"
+                  d="M15.547 2l-1.305 1.27L6 11.293v1.414l8.242 8.022L15.547 22H17v-1.414l-1.305-1.271L8.18 12l7.515-7.316L17 3.414V2z"></path>
+        </svg>
+
+        <div class="g-max-width-645 text-center g-pt-40 mx-auto g-mb-30 g-mb-70--md">
+            <h2 class="h4 mb-3 page-header g-font-weight-300">
+                <th:block th:if="${newAd.status == T(kz.kaps.resort.core.domain.AdStatusEnum).SEED}" th:text="#{cabinet.my.ad.adding.header}"></th:block>
+                <th:block th:if="${newAd.status != T(kz.kaps.resort.core.domain.AdStatusEnum).SEED}" th:text="#{cabinet.my.ad.editing.header}"></th:block> -
+                <th:block th:text="#{single.HOUSE}"></th:block>
+            </h2>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="row justify-content-center">
+            <div class="col-lg-8" id="formWrapper">
+
+                <form role="form" class="g-mb-30" method="post"
+                      th:object="${newAd}" th:modelAttribute="newAd" th:action="@{${formActionUrl}}">
+                    <input th:field="*{id}" style="display: none;"
+                           type="number">
+                    <input th:field="*{status}" style="display: none;" type="text">
+                    <input th:field="*{housingType}" style="display: none;" type="text">
+
+                    <div class="text-center g-brd-bottom g-brd-gray-light-v4 g-mb-15 g-mt-30">
+                        <h4 class="h5 mb-3 page-header g-font-weight-300" th:text="#{common.price}">Цена</h4>
+                    </div>
+
+                    <div class="form-group g-mb-25">
+                        <div class="row row-cols-2">
+                            <div class="col-6 col-sm-5 col-md-4" th:classappend="${#fields.hasErrors('weekdayPricePerDay')} ? has-danger : ''">
+                                <label for="weekdayPricePerDayInput" class="label-ar">
+                                    <span th:text="#{common.price.per.day.in.weekdays.tenge.short}"></span>
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input th:field="*{weekdayPricePerDay}" id="weekdayPricePerDayInput"
+                                       class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3
+                                               g-brd-primary--hover rounded g-py-13 g-px-15 form-input-ar col-8"
+                                       type="number" min="1">
+                                <span th:text="#{common.price.per.day.tg}"></span>
+                                <div class="form-control-feedback" th:if="${#fields.hasErrors('weekdayPricePerDay')}" th:errors="*{weekdayPricePerDay}">
+                                    Sorry, that username's taken. Try another?</div>
+                            </div>
+                            <div class="col-6 col-sm-5 col-md-4" th:classappend="${#fields.hasErrors('holidayPricePerDay')} ? has-danger : ''">
+                                <label for="holidayPricePerDayInput" class="label-ar">
+                                    <span th:text="#{common.price.per.day.in.holydays.tenge.short}"></span>
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input th:field="*{holidayPricePerDay}" id="holidayPricePerDayInput"
+                                       class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3
+                                       g-brd-primary--hover rounded g-py-13 g-px-15 form-input-ar col-8"
+                                       type="number" min="1">
+                                <span th:text="#{common.price.per.day.tg}"></span>
+                                <div class="form-control-feedback" th:if="${#fields.hasErrors('holidayPricePerDay')}" th:errors="*{holidayPricePerDay}">
+                                    Sorry, that username's taken. Try another?</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center g-brd-bottom g-brd-gray-light-v4 g-mb-15 g-mt-30">
+                        <h4 class="h5 mb-3 page-header g-font-weight-300" th:text="#{common.header}">Заголовок</h4>
+                    </div>
+                    <div class="form-group g-mb-25" th:classappend="${#fields.hasErrors('header')} ? has-danger : ''">
+                        <input th:field="*{header}" id="headerInput"
+                               class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3
+                                       g-brd-primary--hover rounded g-py-13 g-px-15 form-input-ar col-md-8"
+                               type="text" maxlength="50">
+                        <div class="form-control-feedback" th:if="${#fields.hasErrors('header')}" th:errors="*{header}">
+                            Sorry, that username's taken. Try another?</div>
+                    </div>
+
+                    <div class="text-center g-brd-bottom g-brd-gray-light-v4 g-mb-15 g-mt-60">
+                        <h4 class="h5 mb-3 page-header g-font-weight-300" th:text="#{common.location}">Местоположение</h4>
+                    </div>
+                    <div class="form-group g-mb-25" th:classappend="${#fields.hasErrors('countryId')} ? has-danger : ''">
+                        <label for="countrySelectorId" class="label-ar">
+                            <span th:text="#{common.country}"></span>
+                            <span class="text-danger">*</span>
+                        </label>
+                        <select th:field="*{countryId}"
+                                class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3
+                        g-brd-primary--hover rounded g-py-13 g-px-15" id="countrySelectorId">
+                            <option th:each="country : ${countries}" th:value="${country.getId()}" th:text="${country.getNameRu()}">
+                            </option>
+                        </select>
+                        <div class="form-control-feedback" th:if="${#fields.hasErrors('countryId')}" th:errors="*{countryId}">
+                            Sorry, that username's taken. Try another?</div>
+                    </div>
+
+                    <div class="form-group g-mb-25" th:classappend="${#fields.hasErrors('localityId')} ? has-danger : ''">
+                        <label for="localitySelectorId" class="label-ar">
+                            <span th:text="#{common.locality}"></span>
+                            <span class="text-danger">*</span>
+                        </label>
+                        <select th:field="*{localityId}"
+                                class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3
+                        g-brd-primary--hover rounded g-py-13 g-px-15" id="localitySelectorId">
+                            <option th:each="locality : ${localities}" th:value="${locality.getId()}" th:text="${locality.getNameRu()}">
+                            </option>
+                        </select>
+                        <div class="form-control-feedback" th:if="${#fields.hasErrors('localityId')}" th:errors="*{localityId}">
+                            Sorry, that username's taken. Try another?</div>
+                    </div>
+
+
+
+                    <div class="form-group g-mb-25">
+                        <div class="row row-cols-2">
+                            <div class="col-8 col-sm-6 col-md-4" th:classappend="${#fields.hasErrors('street')} ? has-danger : ''">
+                                <label for="streetInput" class="label-ar">
+                                    <span th:text="#{common.street}"></span>
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input th:field="*{street}" class="form-control g-color-black g-bg-white g-bg-white--focus
+                                g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15 form-input-ar"
+                                       type="text" id="streetInput">
+                                <div class="form-control-feedback" th:if="${#fields.hasErrors('street')}" th:errors="*{street}">Sorry, that username's taken. Try another?</div>
+                            </div>
+                            <div class="col-4 col-sm-4 col-md-2" th:classappend="${#fields.hasErrors('houseNumber')} ? has-danger : ''">
+                                <label for="houseNumberInput" class="label-ar">
+                                    <span th:text="#{common.houseNumber}"></span>
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input th:field="*{houseNumber}" class="form-control g-color-black g-bg-white g-bg-white--focus
+                        g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15 form-input-ar"
+                                       type="text" id="houseNumberInput">
+                                <div class="form-control-feedback" th:if="${#fields.hasErrors('houseNumber')}" th:errors="*{houseNumber}">Sorry, that username's taken. Try another?</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center g-brd-bottom g-brd-gray-light-v4 g-mb-15 g-mt-60">
+                        <h4 class="h5 mb-3 page-header g-font-weight-300" th:text="#{common.house.sizes}">Размеры коттеджа</h4>
+                    </div>
+                    <div class="form-group g-mb-25" th:classappend="${#fields.hasErrors('floorNum')} ? has-danger : ''">
+                        <label for="floorsNumInput" class="label-ar">
+                            <span th:text="#{cabinet.ad.form.house.floorsnum.label}"></span>
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input th:field="*{floorNum}" class="form-control g-color-black g-bg-white g-bg-white--focus
+                            g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15 form-input-ar col-3 col-md-2"
+                               type="number" id="floorsNumInput">
+                        <div class="form-control-feedback" th:if="${#fields.hasErrors('floorNum')}" th:errors="*{floorNum}">Sorry, that username's taken. Try another?</div>
+                    </div>
+                    <div class="form-group g-mb-25">
+                        <div class="row row-cols-2">
+                            <div class="col-6 col-sm-5 col-md-4" th:classappend="${#fields.hasErrors('area')} ? has-danger : ''">
+                                <label for="areaInput" class="label-ar">
+                                    <span th:text="#{cabinet.ad.create.form.house.area.label}"></span>
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input th:field="*{area}" class="form-control g-color-black g-bg-white g-bg-white--focus
+                                g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15 form-input-ar col-6"
+                                       type="number" min="1" id="areaInput">
+                                <span th:text="#{common.area.meters}"></span>
+                                <div class="form-control-feedback" th:if="${#fields.hasErrors('area')}" th:errors="*{area}">Sorry, that username's taken. Try another?</div>
+                            </div>
+                            <div class="col-6 col-sm-5 col-md-4" th:classappend="${#fields.hasErrors('territoryArea')} ? has-danger : ''">
+                                <label for="territoryAreaInput" class="label-ar">
+                                    <span th:text="#{cabinet.ad.create.form.territory.area.label}"></span>
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input th:field="*{territoryArea}" class="form-control g-color-black g-bg-white g-bg-white--focus
+                                    g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15 form-input-ar col-6"
+                                       type="number" min="1" id="territoryAreaInput">
+                                <span th:text="#{common.area.hundreds}"></span>
+                                <div class="form-control-feedback" th:if="${#fields.hasErrors('territoryArea')}" th:errors="*{territoryArea}">Sorry, that username's taken. Try another?</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group g-mb-25">
+                        <div class="row row-cols-2">
+                            <div class="col-6 col-sm-5 col-md-4" th:classappend="${#fields.hasErrors('roomNum')} ? has-danger : ''">
+                                <label for="roomNumInput" class="label-ar">
+                                    <span th:text="#{cabinet.ad.create.form.roomnum.label}"></span>
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input th:field="*{roomNum}" class="form-control g-color-black g-bg-white g-bg-white--focus
+                                g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15 form-input-ar col-6"
+                                       type="number" id="roomNumInput">
+                                <div class="form-control-feedback" th:if="${#fields.hasErrors('roomNum')}" th:errors="*{roomNum}">Sorry, that username's taken. Try another?</div>
+                            </div>
+                            <div class="col-6 col-sm-5 col-md-4" th:classappend="${#fields.hasErrors('sleepNum')} ? has-danger : ''">
+                                <label for="sleepNumInput" class="label-ar">
+                                    <span th:text="#{cabinet.ad.create.form.sleep-num.label}"></span>
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input th:field="*{sleepNum}" class="form-control g-color-black g-bg-white g-bg-white--focus
+                                g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15 form-input-ar col-6"
+                                       type="number" min="1" id="sleepNumInput">
+                                <div class="form-control-feedback" th:if="${#fields.hasErrors('sleepNum')}" th:errors="*{sleepNum}">Sorry, that username's taken. Try another?</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center g-brd-bottom g-brd-gray-light-v4 g-mb-15 g-mt-60">
+                        <h4 class="h5 mb-3 page-header g-font-weight-300" th:text="#{common.facilities}">Удобства</h4>
+                    </div>
+                    <!-- Columned Checkboxes -->
+                    <div class="row g-mb-40">
+                        <!-- Left Column -->
+                        <div class="col-md-6">
+                            <div class="form-group g-mb-10">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input mr-1" type="checkbox" th:field="*{hotWater}" th:value="true">
+                                        <span th:text="#{common.hot-water}"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group g-mb-10">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input mr-1" type="checkbox" th:field="*{coldWater}" th:value="true">
+                                        <span th:text="#{common.cold-water}"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group g-mb-10">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input mr-1" type="checkbox" th:field="*{tv}" th:value="true">
+                                        <span th:text="#{common.tv}"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group g-mb-10">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input mr-1" type="checkbox" th:field="*{microwave}" th:value="true">
+                                        <span th:text="#{common.microwave}"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group g-mb-10">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input mr-1" type="checkbox" th:field="*{wifi}" th:value="true">
+                                        <span th:text="#{common.wifi}"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group g-mb-10">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input mr-1" type="checkbox" th:field="*{fridge}" th:value="true">
+                                        <span th:text="#{common.fridge}"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group g-mb-10">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input mr-1" type="checkbox" th:field="*{stove}" th:value="true">
+                                        <span th:text="#{common.stove}"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group g-mb-10">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input mr-1" type="checkbox" th:field="*{washer}" th:value="true">
+                                        <span th:text="#{common.washer}"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group g-mb-10">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input mr-1" type="checkbox" th:field="*{conditioner}" th:value="true">
+                                        <span th:text="#{common.conditioner}"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group g-mb-10">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input mr-1" type="checkbox" th:field="*{brazier}" th:value="true">
+                                        <span th:text="#{common.brazier}"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Left Column -->
+
+                        <!-- Right Column -->
+                        <div class="col-md-6">
+
+
+                            <div class="form-group g-mb-10">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input mr-1" type="checkbox" th:field="*{sauna}" th:value="true">
+                                        <span th:text="#{common.sauna}"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group g-mb-10">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input mr-1" type="checkbox" th:field="*{bathhouse}" th:value="true">
+                                        <span th:text="#{common.bathhouse}"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group g-mb-10">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input mr-1" type="checkbox" th:field="*{swimmingPool}" th:value="true">
+                                        <span th:text="#{common.swimmingPool}"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group g-mb-10">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input mr-1" type="checkbox" th:field="*{summerKitchen}" th:value="true">
+                                        <span th:text="#{common.summerKitchen}"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group g-mb-10">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input mr-1" type="checkbox" th:field="*{cook}" th:value="true">
+                                        <span th:text="#{common.cook}"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group g-mb-10">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input mr-1" type="checkbox" th:field="*{alcove}" th:value="true">
+                                        <span th:text="#{common.alcove}"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group g-mb-10">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input mr-1" type="checkbox" th:field="*{kazan}" th:value="true">
+                                        <span th:text="#{common.kazan}"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group g-mb-10">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input mr-1" type="checkbox" th:field="*{tapchan}" th:value="true">
+                                        <span th:text="#{common.tapchan}"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group g-mb-10">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input mr-1" type="checkbox" th:field="*{bicycles}" th:value="true">
+                                        <span th:text="#{common.bicycles}"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group g-mb-10">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input mr-1" type="checkbox" th:field="*{quadBikes}" th:value="true">
+                                        <span th:text="#{common.quadBikes}"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group g-mb-10">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input mr-1" type="checkbox" th:field="*{playground}" th:value="true">
+                                        <span th:text="#{common.playground}"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group g-mb-10">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input mr-1" type="checkbox" th:field="*{billiards}" th:value="true">
+                                        <span th:text="#{common.billiards}"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <!-- End Right Column -->
+                    </div>
+                    <!-- End Columned Checkboxes -->
+
+                    <div class="text-center g-brd-bottom g-brd-gray-light-v4 g-mb-15 g-mt-60">
+                        <h4 class="h5 mb-3 page-header g-font-weight-300" th:text="#{common.photos}">Фотографии</h4>
+                    </div>
+                    <div class="form-group mb-0" th:classappend="${houseImagesDoNotExistMessage} ? has-danger : ''" id="imageDropzoneId">
+                        <div id="imageUploaderValidatorMessage" class="form-control-feedback" th:if="${houseImagesDoNotExistMessage}" th:text="${houseImagesDoNotExistMessage}">
+                            Sorry, that username's taken. Try another?
+                        </div>
+
+                        <div class="row text-center dropzone-previews row-cols-1 row-cols-md-3" id="previews">
+
+                            <div class="col-auto g-mb-30" id="template">
+                                <img class="img-fluid u-block-hover__main--zoom-v1 dz-image" data-dz-thumbnail>
+                                <figcaption class="g-pos-abs g-top-0 g-right-15">
+                                    <button type="button" class="btn btn-sm g-bg-gray-dark-v3 rounded-0" style="padding:0;" data-dz-remove>
+                                        <span class="u-icon-v1 g-font-size-25" style="color: white;">
+                                            <i class="icon-media-066 u-line-icon-pro"></i>
+                                        </span>
+                                    </button>
+                                </figcaption>
+                                <div class="progress rounded-0 g-mb-0 g-mt-5" style="opacity: 1;">
+                                    <div class="progress-bar u-progress-bar--2xs" role="progressbar"
+                                         style="width: 0%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" data-dz-uploadprogress></div>
+                                </div>
+                                <small class="error text-danger" data-dz-errormessage></small>
+                            </div>
+
+                        </div>
+                        <button type="button" class="btn btn-xl u-btn-primary g-mr-10 g-mb-15 dz-clickable photo-input-button">
+                            <i class="icon-electronics-103 u-line-icon-pro g-mr-5"></i>
+                            <span th:text="#{cabinet.ad.create.form.add.photos}"></span>
+                        </button>
+                    </div>
+
+                    <div class="form-group g-mb-40 g-mt-40" th:classappend="${#fields.hasErrors('description')} ? has-danger : ''">
+                        <label for="descriptionInput" class="label-ar">
+                            <span th:text="#{cabinet.ad.create.form.description.label}"></span>
+                            <span class="text-danger">*</span>
+                        </label>
+                        <textarea class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-brd-primary--hover g-resize-none rounded g-py-13 g-px-15"
+                                  th:field="*{description}" rows="6" maxlength="1000" id="descriptionInput"></textarea>
+                        <div class="form-control-feedback" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Sorry, that username's taken. Try another?</div>
+                    </div>
+
+                    <div class="form-group g-mb-25">
+                        <label for="phonenumberInput" class="label-ar">
+                            <span th:text="#{cabinet.ad.create.form.phonenumber.label}"></span>
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input disabled
+                               class="form-control g-color-black g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15"
+                               type="text" th:value="${phonenumber}" id="phonenumberInput">
+                    </div>
+
+                    <button class="btn u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25"
+                            th:text="#{cabinet.ad.create.form.save}" type="submit"></button>
+                </form>
+            </div>
+        </div>
+        <!-- End Contact Form -->
+    </div>
+
+</main>
+
+<!-- JS Global Compulsory -->
+<script th:src="@{/unify/assets/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/jquery-migrate/jquery-migrate.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/popper.js/popper.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/bootstrap/bootstrap.min.js}"></script>
+
+<!-- JS Implementing Plugins -->
+<script th:src="@{/unify/assets/vendor/jquery.countdown.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/hs-megamenu/src/hs.megamenu.js}"></script>
+<script th:src="@{/unify/assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.concat.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/appear.js}"></script>
+<script th:src="@{/unify/assets/vendor/jquery.filer/js/jquery.filer.min.js}"></script>
+
+
+<!-- JS Unify -->
+<script th:src="@{/unify/assets/js/hs.core.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.header.js}"></script>
+<script th:src="@{/unify/assets/js/helpers/hs.hamburgers.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.dropdown.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.scrollbar.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.countdown.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.count-qty.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.go-to.js}"></script>
+
+<script th:src="@{/unify/assets/js/helpers/hs.focus-state.js}"></script>
+<script th:src="@{/unify/assets/js/helpers/hs.file-attachments.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.file-attachement.js}"></script>
+
+<script th:src="@{/javascripts/dropzone-5.7.0/dropzone.min.js}"></script>
+
+<!-- JS Customization -->
+<script th:src="@{/unify/assets/js/custom.js}"></script>
+
+<!-- JS Plugins Init. -->
+<script th:inline="javascript">
+    function goHistoryBack() {
+        window.history.back();
+    }
+    $(document).on('ready', function () {
+        // initialization of header
+        $.HSCore.components.HSHeader.init($('#js-header'));
+        $.HSCore.helpers.HSHamburgers.init('.hamburger');
+
+        // initialization of HSMegaMenu component
+        $('.js-mega-menu').HSMegaMenu({
+            event: 'hover',
+            pageContainer: $('.container'),
+            breakpoint: 991
+        });
+
+        // initialization of HSDropdown component
+        $.HSCore.components.HSDropdown.init($('[data-dropdown-target]'), {
+            afterOpen: function () {
+                $(this).find('input[type="search"]').focus();
+            }
+        });
+
+        // initialization of go to
+        $.HSCore.components.HSGoTo.init('.js-go-to');
+
+        // initialization of quantity counter
+        $.HSCore.components.HSCountQty.init('.js-quantity');
+
+        /*<![CDATA[*/
+        var imageUploadURL = [[${imageUploadURL}]];
+        var imageDeleteURL = [[${imageDeleteURL}]];
+        var imageListURL = [[${imageListURL != null ? imageListURL : null}]];
+        var dropPhotosHereText = [[#{cabinet.ad.create.form.drop.photos.here}]];
+        var orText = [[#{common.or}]];
+        var addPhotoText = [[#{cabinet.ad.create.form.add.photos}]];
+        var maxPhotoSizeText = [[#{cabinet.ad.create.form.max.photo.size(5)}]];
+        var photoUploadedSuccessText = [[#{cabinet.ad.create.form.photo.uploaded.success}]];
+        var photoUploadedErrorText = [[#{cabinet.ad.create.form.photo.uploaded.error}]];
+        /*]]>*/
+
+        Dropzone.autoDiscover = false;
+
+        // Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
+        var previewNode = document.querySelector("#template");
+        previewNode.id = "";
+        var previewTemplate = previewNode.parentNode.innerHTML;
+        previewNode.parentNode.removeChild(previewNode);
+
+        var sumPaddingBetweenPreviews = 60;
+        var sumFormPaddingWidth = 30;
+        var colsCount = 3;
+        var thumbnailWidth = ($( '#formWrapper' ).width() - sumFormPaddingWidth - sumPaddingBetweenPreviews)/colsCount;
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+            thumbnailWidth = $( document ).width() - sumFormPaddingWidth;
+        }
+
+        var dropzoneConfig = {
+            url: imageUploadURL, // Set the url
+            paramName: 'images[]',
+            thumbnailWidth: thumbnailWidth,
+            thumbnailHeight: thumbnailWidth * 0.75,
+            parallelUploads: 20,
+            previewTemplate: previewTemplate,
+            autoQueue: true, // Make sure the files aren't queued until manually added
+            previewsContainer: "#previews", // Define the container to display the previews
+            clickable: ".photo-input-button" // Define the element that should be used as click trigger to select files.
+        };
+        if(imageListURL) {
+            dropzoneConfig.init = function () {
+                thisDropzone = this;
+
+                $.ajax({
+                    url: imageListURL,
+                    type: 'get',
+                    dataType: 'json',
+                    success: function(response){
+
+                        $.each(response, function(key,value) {
+                            var mockFile = { name: value.name, size: value.size, createdImageId: value.id};
+
+                            myDropzone.emit("addedfile", mockFile);
+                            myDropzone.emit("thumbnail", mockFile, value.urlForMediumSize);
+                            myDropzone.emit("complete", mockFile);
+
+                        });
+
+                    }
+                });
+            }
+        }
+
+        var myDropzone = new Dropzone("div#imageDropzoneId", dropzoneConfig);
+        myDropzone.on("addedfile", function(file) {
+            var mess = $('#imageUploaderValidatorMessage');
+            if(mess) {
+                mess.css('display', 'none');
+            }
+        });
+        myDropzone.on("success", function(file, serverResponse) {
+            file.createdImageId = serverResponse.id;
+        });
+        myDropzone.on("error", function(file, serverResponse) {
+            file.previewElement.querySelector(".progress-bar").style.backgroundColor = "#dc3545";
+        });
+        myDropzone.on("thumbnail", function(file, serverResponse) {
+            $('.dz-image').css("width", thumbnailWidth + 'px');
+        });
+        myDropzone.on("removedfile", function(file) {
+            if(file.createdImageId) {
+                deleteImage(file.createdImageId);
+            }
+        });
+
+        function setParamToUrlTemplate(urlTemplate, formalParam, actualParam) {
+            if(urlTemplate && formalParam && actualParam) {
+                return urlTemplate.replace('{' + formalParam + '}', actualParam);
+            }
+        }
+
+        function deleteImage(imageId) {
+            if(imageDeleteURL) {
+                var deleteImageUrlWithParam = setParamToUrlTemplate(imageDeleteURL, "id", imageId);
+                if(deleteImageUrlWithParam) {
+                    $.ajax({
+                        url: deleteImageUrlWithParam,
+                        type: 'DELETE',
+                        success: function(result) {
+                            // Do something with the result
+                        }
+                    });
+                }
+            }
+        }
+        //  custom drop zone end
+
+        /*<![CDATA[*/
+        var countryDictURL = [[${countryDictURL != null ? countryDictURL : null}]];
+        /*]]>*/
+
+        var countries = [];
+        loadCountries();
+
+        function loadCountries() {
+            if(countryDictURL) {
+                $.ajax({
+                    url: countryDictURL,
+                    type: 'get',
+                    dataType: 'json',
+                    success: function (response) {
+                        countries = response;
+                    }
+                });
+            }
+        }
+
+
+        $( "#countrySelectorId" ).change(function() {
+            var selectedCountryId = this.value;
+            console.log('selectedCountryId = ' + selectedCountryId);
+            countries.forEach(function (nxtCountry) {
+                console.log('forEach = ' + nxtCountry.id);
+
+                if(nxtCountry.id == selectedCountryId) {
+                    updateLocalitySelectorOptions(nxtCountry.localities);
+                }
+            })
+        });
+
+        function updateLocalitySelectorOptions(localities) {
+            console.log('updateLocalitySelectorOptions');
+            $("#localitySelectorId").empty();
+            if(localities) {
+                for(var i = 0; i < localities.length; i++) {
+                    $("#localitySelectorId").append($("<option />").val(localities[i].id).text(localities[i].nameRu));
+                }
+            }
+        }
+
+        $.HSCore.helpers.HSFocusState.init();
+
+        // initialization of countdowns
+        var countdowns = $.HSCore.components.HSCountdown.init('.js-countdown', {
+            yearsElSelector: '.js-cd-years',
+            monthElSelector: '.js-cd-month',
+            daysElSelector: '.js-cd-days',
+            hoursElSelector: '.js-cd-hours',
+            minutesElSelector: '.js-cd-minutes',
+            secondsElSelector: '.js-cd-seconds'
+        });
+    });
+
+    $(window).on('load', function() {
+        // initialization of HSScrollBar component
+        $.HSCore.components.HSScrollBar.init($('.js-scrollbar'));
+    });
+</script>
+
+
+</body>
+</html>

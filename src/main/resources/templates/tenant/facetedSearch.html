@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Title -->
+    <title>E-commerce List Filter Left Sidebar Page | Unify - Responsive Website Template</title>
+
+    <!-- Required Meta Tags Always Come First -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" th:href="@{/favicon.ico}">
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,900">
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/bootstrap/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/icon-line/css/simple-line-icons.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/icon-material/material-icons.css}">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/icon-awesome/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/icon-line-pro/style.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/icon-hs/style.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/dzsparallaxer/dzsparallaxer.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/dzsparallaxer/dzsscroller/scroller.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/dzsparallaxer/advancedscroller/plugin.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/animate.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/custombox/custombox.min.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/hamburgers/hamburgers.min.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/hs-megamenu/src/hs.megamenu.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.min.css}">
+
+    <!-- CSS Unify Theme -->
+    <link rel="stylesheet" th:href="@{/unify/e-commerce/assets/css/styles.e-commerce.css}">
+
+    <!-- CSS Customization -->
+<!--    <link rel="stylesheet" th:href="@{/unify/assets/css/custom.css}">-->
+    <link rel="stylesheet" th:href="@{/css/app.min.css}">
+</head>
+
+<body>
+<main id="faceted-search-app">
+    <!-- Header -->
+    <th:block th:if="${!isMobile}" th:include="~{header :: header}"></th:block>
+    <!-- End Header -->
+
+    <!-- Breadcrumbs -->
+    <section th:if="${!isMobile}" class="g-brd-top g-brd-bottom g-brd-gray-light-v4 g-py-15">
+        <div class="container g-bg-cover__inner">
+            <ul class="u-list-inline">
+                <li class="list-inline-item g-mr-7">
+                    <a class="u-link-v5 g-color-main" th:href="@{/}" th:text="#{breadcrumb.home}">Home</a>
+                    <i class="fa fa-angle-right g-ml-7"></i>
+                </li>
+                <li class="list-inline-item">
+                    <span th:text="#{faceted.search.breadcrumb}">About Us</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <!-- End Breadcrumbs -->
+
+    <!-- Header -->
+    <header th:if="${isMobile}" id="js-header"
+            class="faceted-search u-header u-header--sticky-top u-header--toggle-section u-header--change-appearance"
+            data-header-fix-moment="300">
+        <div class="u-header__section u-header__section--light g-bg-white g-transition-0_3 g-py-10 g-brd-bottom g-brd-gray-light-v4-bottom"
+             data-header-fix-moment-exclude="g-py-10" data-header-fix-moment-classes="u-shadow-v18 g-py-0">
+            <div class="container">
+
+                <div class="row row-cols-2">
+                    <div class="col-8 text-center g-brd-right g-brd-gray-light-v4-right">
+                        <select class="form-control rounded-0" id="exampleSelect1" v-on:change="onSortByPriceChange($event)">
+                            <option th:text="#{ad.faceted.search.sort.by.price.asc}" value="asc">По возрастанию цены</option>
+                            <option th:text="#{ad.faceted.search.sort.by.price.desc}" value="desc">По убыванию цены</option>
+                        </select>
+                    </div>
+                    <div class="col-4 text-center g-pt-3">
+                        <a href="#modal1" data-modal-target="#modal1" data-modal-effect="fadein" class="default-text"
+                           v-on:click="onOpenMobileFilter()">
+                            <th:block th:text="#{ad.faceted.search.filter}"></th:block>
+                            &zwnj;
+                            <i class="icon-equalizer align-middle"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!--                <div id="modal1" class="text-left g-max-width-600 g-bg-white g-overflow-y-auto g-pa-20" style="display: none;">-->
+                <!--                    <button type="button" class="close" onclick="Custombox.modal.close();">-->
+                <!--                        <i class="hs-icon hs-icon-close"></i>-->
+                <!--                    </button>-->
+                <!--                    <h3 class="g-mb-20 faceted-filter-modal-header" th:text="#{ad.faceted.search.filter}">Фильтр</h3>-->
+                <!--                    <th:block th:include="~{facetedFilterFormFragment :: filter-form}"></th:block>-->
+                <!--                </div>-->
+
+            </div>
+        </div>
+    </header>
+    <!-- End Header -->
+
+    <!-- Products -->
+    <div class="container">
+        <div class="row faceted-search">
+            <!-- Content -->
+            <div class="col-md-9 order-md-2">
+                <div class="g-pl-15--lg g-pt-30--md g-pt-80" v-show="results.length == 0">
+                    <div class="g-pt-20 g-pb-15">
+                        <div class="row">
+                            <div class="col-12">
+                                <h3 class="h5 mb-3 g-font-weight-400" th:text="#{ad.faceted.search.not-found}"></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="g-pl-15--lg" v-show="results.length > 0">
+                    <!-- Filters -->
+                    <div class="d-sm-none" style="height: 54px;"></div>
+                    <div class="d-sm-flex justify-content-end align-items-center g-brd-bottom g-brd-gray-light-v4 g-pt-40 g-pb-20 d-none">
+
+                        <!-- Sort By -->
+                        <div>
+                            <span class="align-middle d-inline-block g-font-weight-400 g-pos-rel mb-0 g-color-gray-dark-v5"
+                                  th:text="#{ad.faceted.search.sort}">Sort by:</span>
+
+                            <!-- Secondary Button -->
+                            <div class="d-inline-block btn-group g-line-height-1_2">
+                                <button type="button"
+                                        class="btn btn-secondary dropdown-toggle h6 align-middle g-brd-none g-color-gray-dark-v3 g-color-black--hover g-bg-transparent g-pa-0 g-pl-10 g-ma-0"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{pagination.sort === 'priceAsc' ? 'По возрастанию цены' : 'По убыванию цены'}}
+                                </button>
+                                <div class="dropdown-menu rounded-0">
+                                    <a class="dropdown-item g-color-gray-dark-v4"
+                                       th:text="#{ad.faceted.search.sort.by.price.asc}"
+                                       v-on:click="sortByPriceAsc()">По возрастанию цены</a>
+                                    <a class="dropdown-item g-color-gray-dark-v4"
+                                       th:text="#{ad.faceted.search.sort.by.price.desc}"
+                                       v-on:click="sortByPriceDesc()">По убыванию цены</a>
+                                </div>
+                            </div>
+                            <!-- End Secondary Button -->
+                        </div>
+                        <!-- End Sort By -->
+
+                    </div>
+                    <!-- End Filters -->
+
+
+                    <div class="overlay" v-if="isResultsLoading">
+                        <div class="d-flex justify-content-center overlay-spinner">
+                            <div class="spinner-border" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Products -->
+                    <div class="g-brd-bottom g-brd-gray-light-v4" :class="{'g-pb-70 g-mb-60':(index == results.length - 1)}" v-for="(product, index) in results">
+                        <div class="g-pt-20 g-pb-15">
+                            <div class="row">
+                                <div class="col-6 col-sm-5 col-lg-4 g-mb-30 d-none d-sm-block">
+                                    <figure class="g-pos-rel">
+                                        <a :href="product.urlLink">
+                                            <img class="img-fluid" :src="product.imageUrlForMediumSize" alt="Image Description">
+                                        </a>
+                                    </figure>
+                                </div>
+                                <div class="col-12 g-mb-10 d-block d-sm-none g-px-0">
+                                    <span class="d-inline-block g-color-gray-dark-v5 g-font-size-15 mb-2 g-px-15 g-mb-5">
+                                            {{product.localityName}}
+                                        </span>
+                                    <figure class="g-pos-rel">
+                                        <a :href="product.urlLink">
+                                            <img class="img-fluid" :src="product.imageUrlForMediumSize" alt="Image Description">
+                                        </a>
+                                    </figure>
+                                </div>
+
+                                <div class="col-6 col-sm-7 col-lg-8 g-mb-15 d-none d-sm-block">
+                                    <!-- Product Info -->
+                                    <div class="g-mb-30">
+                                        <h4 class="h5 g-color-black mb-0 mt-1 d-none d-sm-block">
+                                            <a class="u-link-v5 g-color-black g-color-primary--hover" :href="product.urlLink">
+                                                {{product.header}}
+                                                <!--                                                <span class="u-icon-v1 g-color-text g-pb-15" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Добавить в избранное">-->
+                                                <!--                                                    <i class="fa fa-star-o"></i>-->
+                                                <!--                                                </span>-->
+                                                <span class="pull-right g-font-weight-500">{{product.prices}}</span>
+                                            </a>
+                                        </h4>
+                                        <span class="d-inline-block g-color-gray-dark-v5 g-font-size-15 mb-2">
+                                            {{product.localityName}}
+                                        </span>
+                                        <!--                                        <span class="d-block g-color-black g-font-size-20 mb-4">$52.00</span>-->
+                                        <p class="d-none d-sm-block">Alongside our classic parka, we make modern clothing and outerwear that withstands the weather and the changes in fashion.</p>
+                                    </div>
+                                    <!-- End Product Info -->
+                                </div>
+                            </div>
+                            <div class="row d-block d-sm-none">
+                                <div class="col">
+                                    <h4 class="h5 g-color-black mb-0 mt-1 g-font-weight-500">
+                                        <a :href="product.urlLink" class="u-link-v5 g-color-black g-color-primary--hover">
+                                            {{product.prices}}
+                                        </a>
+                                    </h4>
+                                    <h4 class="h5 g-color-black mb-0 mt-1">
+                                        <a class="u-link-v5 g-color-black g-color-primary--hover" :href="product.urlLink">
+                                            {{product.header}}
+                                            <!--                                            <span class="u-icon-v1 g-color-text g-pb-15" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Добавить в избранное">-->
+                                            <!--                                                <i class="fa fa-star-o"></i>-->
+                                            <!--                                            </span>-->
+                                        </a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Products -->
+
+                    <!-- Pagination -->
+                    <nav class="g-mb-100" aria-label="Page Navigation">
+                        <ul class="list-inline mb-0">
+                            <li class="list-inline-item" v-if="pagination.isPrevExist">
+                                <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover
+                                g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15"
+                                   href="#" aria-label="Next" v-on:click="goToPrevPageNumber()">
+                                  <span aria-hidden="true">
+                                    <i class="fa fa-angle-left"></i>
+                                  </span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+
+                            <!--                            <li class="list-inline-item hidden-down" v-for="nxtPage in paginPages">-->
+                            <!--                                <a class="active g-brd-primary&#45;&#45;active g-color-white g-bg-primary&#45;&#45;active g-brd-gray-light-v3-->
+                            <!--                                u-pagination-v1__item g-width-30 g-height-30 g-font-size-12 rounded-circle g-pa-5"-->
+                            <!--                                   href="#" v-on:click="goToPageNumber(nxtPage.pageNum)">{{nxtPage.pageNum + 1}}</a>-->
+                            <!--                            </li>-->
+                            <li class="list-inline-item hidden-down" v-for="nxtPage in pagination.paginPages">
+                                <a class="u-pagination-v1__item g-width-30 g-height-30 g-font-size-12 rounded-circle g-pa-5"
+                                   :class="{'active g-brd-primary--active g-color-white g-bg-primary--active g-brd-gray-light-v3':(nxtPage.pageNum === pagination.currentPageNum), 'g-color-gray-dark-v5 g-color-primary--hover':(nxtPage.pageNum !== pagination.currentPageNum)}"
+                                   href="#" v-on:click="goToPageNumber(nxtPage.pageNum)">{{nxtPage.pageNum + 1}}</a>
+                            </li>
+                            <!--                            <li class="list-inline-item hidden-down">-->
+                            <!--                                <a  v-on:click="goToPageNumber(1)"-->
+                            <!--                                    class="g-color-gray-dark-v5 g-color-primary&#45;&#45;hover-->
+                            <!--                                    u-pagination-v1__item g-width-30 g-height-30 g-font-size-12 rounded-circle g-pa-5" href="#">2</a>-->
+                            <!--                            </li>-->
+                            <!--                            <li class="list-inline-item g-hidden-xs-down">-->
+                            <!--                                <a class="u-pagination-v1__item g-width-30 g-height-30 g-color-gray-dark-v5 g-color-primary&#45;&#45;hover g-font-size-12 rounded-circle g-pa-5" href="#">3</a>-->
+                            <!--                            </li>-->
+                            <!--                            <li class="list-inline-item hidden-down">-->
+                            <!--                                <span class="g-width-30 g-height-30 g-color-gray-dark-v5 g-font-size-12 rounded-circle g-pa-5">...</span>-->
+                            <!--                            </li>-->
+                            <!--                            <li class="list-inline-item g-hidden-xs-down">-->
+                            <!--                                <a class="u-pagination-v1__item g-width-30 g-height-30 g-color-gray-dark-v5 g-color-primary&#45;&#45;hover-->
+                            <!--                                g-font-size-12 rounded-circle g-pa-5" href="#" v-on:click="goToPageNumber(pagination.totalPages - 1)">{{pagination.totalPages}}</a>-->
+                            <!--                            </li>-->
+                            <li class="list-inline-item" v-if="pagination.isNextExist">
+                                <a class="u-pagination-v1__item g-width-30 g-height-30 g-brd-gray-light-v3 g-brd-primary--hover
+                                g-color-gray-dark-v5 g-color-primary--hover g-font-size-12 rounded-circle g-pa-5 g-ml-15"
+                                   href="#" aria-label="Next"  v-on:click="goToNextPageNumber()">
+                                  <span aria-hidden="true">
+                                    <i class="fa fa-angle-right"></i>
+                                  </span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- End Pagination -->
+                </div>
+            </div>
+            <!-- End Content -->
+
+            <!-- Filters -->
+            <div class="col-md-3 order-md-1 g-brd-right--lg g-brd-gray-light-v4 g-pt-40">
+                <div class="g-pr-15--lg g-pt-60">
+                    <th:block th:if="${!isMobile}" th:include="~{facetedFilterFormFragment :: filter-form}"></th:block>
+                    <div id="modal1" class="text-left g-max-width-600 g-bg-white g-overflow-y-auto g-pa-20 g-width-100x" style="display: none;">
+                        <button type="button" class="close" v-on:click="closeMobileModalWindow()">
+                            <i class="hs-icon hs-icon-close"></i>
+                        </button>
+                        <h3 class="g-mb-20 faceted-filter-modal-header" th:text="#{ad.faceted.search.filter}">Фильтр</h3>
+                        <th:block th:include="~{facetedFilterFormFragment :: filter-form-mobile}"></th:block>
+                    </div>
+                </div>
+            </div>
+            <!-- End Filters -->
+        </div>
+    </div>
+    <!-- End Products -->
+
+    <nav th:if="${isMobile}" class="mobile-bottom-nav">
+        <div class="mobile-bottom-nav__item">
+            <a th:href="@{/}">
+                <div class="mobile-bottom-nav__item-content">
+                    <i class="material-icons">home</i>
+                    <span th:text="#{nav.mobile.home}"></span>
+                </div>
+            </a>
+        </div>
+        <div class="mobile-bottom-nav__item mobile-bottom-nav__item--active">
+            <a th:href="@{/search}">
+                <div class="mobile-bottom-nav__item-content">
+                    <i class="material-icons">search</i>
+                    <span th:text="#{nav.mobile.search}"></span>
+                </div>
+            </a>
+        </div>
+        <div class="mobile-bottom-nav__item">
+            <a th:href="@{/my/ads/create/choose-housing-type}">
+                <div class="mobile-bottom-nav__item-content">
+                    <i class="material-icons">add_box</i>
+                    <span th:text="#{nav.mobile.create.ad}"></span>
+                </div>
+            </a>
+        </div>
+
+        <div class="mobile-bottom-nav__item">
+            <a th:href="@{/cabinet}">
+                <div class="mobile-bottom-nav__item-content">
+                    <i class="material-icons">person</i>
+                    <span th:text="#{nav.mobile.cabinet}"></span>
+                </div>
+            </a>
+        </div>
+    </nav>
+
+
+    <a class="js-go-to u-go-to-v2" href="#"
+       data-type="fixed"
+       data-position='{
+           "bottom": 55,
+           "right": 15
+         }'
+       data-offset-top="400"
+       data-compensation="#js-header"
+       data-show-effect="zoomIn">
+        <i class="hs-icon hs-icon-arrow-top"></i>
+    </a>
+</main>
+
+<div class="u-outer-spaces-helper"></div>
+
+<!-- JS Global Compulsory -->
+<script th:src="@{/unify/assets/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/jquery-migrate/jquery-migrate.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/popper.js/popper.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/bootstrap/bootstrap.min.js}"></script>
+
+<!-- JS Implementing Plugins -->
+<script th:src="@{/unify/assets/vendor/jquery-ui/ui/widget.js}"></script>
+<script th:src="@{/unify/assets/vendor/jquery-ui/ui/widgets/menu.js}"></script>
+<script th:src="@{/unify/assets/vendor/jquery-ui/ui/widgets/mouse.js}"></script>
+<script th:src="@{/unify/assets/vendor/jquery-ui/ui/widgets/slider.js}"></script>
+<script th:src="@{/unify/assets/vendor/dzsparallaxer/dzsparallaxer.js}"></script>
+<script th:src="@{/unify/assets/vendor/dzsparallaxer/dzsscroller/scroller.js}"></script>
+<script th:src="@{/unify/assets/vendor/dzsparallaxer/advancedscroller/plugin.js}"></script>
+<script th:src="@{/unify/assets/vendor/hs-megamenu/src/hs.megamenu.js}"></script>
+<script th:src="@{/unify/assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.concat.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/custombox/custombox.min.js}"></script>
+
+<!-- JS Unify -->
+<script th:src="@{/unify/assets/js/hs.core.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.header.js}"></script>
+<script th:src="@{/unify/assets/js/helpers/hs.hamburgers.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.dropdown.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.scrollbar.js}"></script>
+<script th:src="@{/unify/assets/js/helpers/hs.rating.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.slider.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.go-to.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.modal-window.js}"></script>
+
+<!-- JS Customization -->
+<script th:src="@{/unify/assets/js/custom.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script th:src="@{/javascripts/vue-slide-up-down.umd.js}"></script>
+<!-- JS Plugins Init. -->
+<script>
+    $(document).on('ready', function () {
+
+        Vue.component("slide-up-down", VueSlideUpDown);
+        var searchApiUrl = '/api/rest/v1/search';
+
+        var searchApp = new Vue({
+            el: '#faceted-search-app',
+            data: {
+                results: [],
+                isResultsLoading: false,
+                pagination: {
+                    paginPages: [],
+                    currentPageNum: 0,
+                    isPrevExist: false,
+                    isNextExist: false,
+                    maxShowedPagesCount: 5,
+                    sort: 'priceAsc'
+                },
+                filters: [],
+                startPrice: null,
+                endPrice: null,
+                startRoomNum: null,
+                endRoomNum: null,
+
+                mobile: {
+                    filters: [],
+                    startPrice: null,
+                    endPrice: null,
+                    startRoomNum: null,
+                    endRoomNum: null,
+                    extendedSearchHidden: true
+                }
+            },
+
+            beforeMount(){
+                this.initialFetchData();
+            },
+            computed: {
+                localityMobileFilter: {
+                    get: function () {
+                        for(var i = 0; i < this.mobile.filters.length; i++) {
+                            if(this.mobile.filters[i].id === 'localityId') {
+                                return this.mobile.filters[i];
+                            }
+                        }
+                    }
+                },
+                housingTypeMobileFilter: {
+                    get: function () {
+                        for(var i = 0; i < this.mobile.filters.length; i++) {
+                            if(this.mobile.filters[i].id === 'housingType') {
+                                return this.mobile.filters[i];
+                            }
+                        }
+                    }
+                },
+            },
+            methods: {
+                initialFetchData: function() {
+                    this.isResultsLoading = true;
+                    const queryString = window.location.search;
+                    var params = {};
+                    if(queryString) {
+                        const urlParams = new URLSearchParams(queryString);
+                        if (urlParams) {
+                            const q = urlParams.get('q');
+                            const size = urlParams.get('size');
+                            const page = urlParams.get('page');
+                            const sort = urlParams.get('sort');
+                            if(q) params.q = q;
+                            if(size) params.size = size;
+                            if(page) params.page = page;
+                            if(sort) params.sort = sort;
+                        }
+                    }
+                    axios.get(
+                        searchApiUrl,
+                        {
+                            params: params
+                        }
+                    ).then(response => {
+                        this.results = response.data.cards.content;
+                        this.filters = response.data.filters;
+                        this.startPrice = response.data.startPrice;
+                        this.endPrice = response.data.endPrice;
+                        this.startRoomNum = response.data.startRoomNum;
+                        this.endRoomNum = response.data.endRoomNum;
+
+                        this._copyToMobileFilters(response.data);
+                        this._updatePaginPages(response.data.cards);
+                        this.isResultsLoading = false;
+                    })
+                },
+                _copyToMobileFilters: function(data){
+                    this.mobile.filters = JSON.parse(JSON.stringify(data.filters))
+                    this.mobile.startPrice = data.startPrice;
+                    this.mobile.endPrice = data.endPrice;
+                    this.mobile.startRoomNum = data.startRoomNum;
+                    this.mobile.endRoomNum = data.endRoomNum;
+                },
+                _copyMobileToDesktopFilters: function(){
+                    this.filters = JSON.parse(JSON.stringify(this.mobile.filters))
+                    this.startPrice = this.mobile.startPrice;
+                    this.endPrice = this.mobile.endPrice;
+                    this.startRoomNum = this.mobile.startRoomNum;
+                    this.endRoomNum = this.mobile.endRoomNum;
+                },
+                fetchData: function(pageNum) {
+                    this.isResultsLoading = true;
+
+                    var q = this.filtersToURLParam();
+                    var params = {size: 10};
+                    if(this.pagination.sort === 'priceDesc') params.sort = "weekdayPricePerDay,desc";
+                    if(this.pagination.sort === 'priceAsc') params.sort = "weekdayPricePerDay,asc";
+
+                    if(pageNum === 0 || pageNum >= 0) params.page = pageNum;
+                    else params.page = 0;
+                    if(q.length > 1) {
+                        params.q = q;
+                    }
+
+                    axios.get(
+                        searchApiUrl,
+                        {
+                            params: params
+                        }
+                    ).then(response => {
+                        this.results = response.data.cards.content;
+                        this.filters = response.data.filters;
+                        this._copyToMobileFilters(response.data);
+                        this._updatePaginPages(response.data.cards);
+                        this._changeURL(q, params);
+                        this.isResultsLoading = false;
+                    })
+                },
+                filtersToURLParam: function() {
+                    var q = "";
+                    for(var i = 0; i < this.filters.length; i++) {
+                        var rows = this.filters[i].rows;
+                        for(var j = 0; j < rows.length; j++) {
+                            if(rows[j].active === true) {
+                                q = q + rows[j].id;
+                            }
+                        }
+                    }
+                    if(this.startPrice) q = q + ":startPrice:" + this.startPrice;
+                    if(this.endPrice) q = q + ":endPrice:" + this.endPrice;
+                    if(this.startRoomNum) q = q + ":startRoomNum:" + this.startRoomNum;
+                    if(this.endRoomNum) q = q + ":endRoomNum:" + this.endRoomNum;
+                    return q;
+                },
+                goToPageNumber: function(pageNum) {
+                    this.fetchData(pageNum);
+                    this.pagination.currentPageNum = pageNum;
+                },
+                goToPrevPageNumber: function() {
+                    this.fetchData(this.pagination.currentPageNum - 1);
+                    this.pagination.currentPageNum = this.pagination.currentPageNum - 1;
+                },
+                goToNextPageNumber: function() {
+                    this.fetchData(this.pagination.currentPageNum + 1);
+                    this.pagination.currentPageNum = this.pagination.currentPageNum + 1;
+                },
+                sortByPriceDesc: function() {
+                    this.pagination.sort = 'priceDesc';
+                    this.fetchData();
+                },
+                sortByPriceAsc: function() {
+                    this.pagination.sort = 'priceAsc';
+                    this.fetchData();
+                },
+                doSearchForMobile: function () {
+                    this.closeMobileModalWindow();
+                    this._copyMobileToDesktopFilters();
+                    this.fetchData();
+                },
+                onOpenMobileFilter: function(){
+                    this._copyToMobileFilters(this);
+                },
+
+                onSortByPriceChange: function(event){
+                    if(event == null || event.target == null) return;
+                    if(event.target.value === 'asc') {
+                        this.sortByPriceAsc();
+                    } else if(event.target.value === 'desc') {
+                        this.sortByPriceDesc();
+                    }
+                },
+                closeMobileModalWindow: function () {
+                    if(Custombox && Custombox.modal)
+                        Custombox.modal.close();
+                    this.mobile.extendedSearchHidden = true;
+                },
+                _updatePaginPages: function(data) {
+                    if(data && data.totalPages) {
+                        var pages = [];
+                        this.pagination.currentPageNum = data.number;
+                        var firstShowedPage, lastShowedPage;
+                        if(this.pagination.maxShowedPagesCount < data.totalPages) {
+                            firstShowedPage = Math.max(data.number - Math.floor(this.pagination.maxShowedPagesCount/2), 0);
+                            lastShowedPage = Math.min(firstShowedPage + this.pagination.maxShowedPagesCount, data.totalPages);
+                        } else {
+                            firstShowedPage = 0;
+                            lastShowedPage = data.totalPages
+                        }
+                        for(var i = firstShowedPage; i < lastShowedPage; i++) {
+                            pages.push({pageNum: i});
+                        }
+                        if(this.pagination.currentPageNum > 0) {
+                            this.pagination.isPrevExist = true;
+                        } else this.pagination.isPrevExist = false;
+                        if(this.pagination.currentPageNum < data.totalPages - 1) {
+                            this.pagination.isNextExist = true;
+                        } else this.pagination.isNextExist = false;
+                        this.pagination.paginPages = pages;
+                    }
+                },
+                _changeURL: function(query, auxParams) {
+                    let stateObj = null;
+                    var params = "";
+                    if(query) params = "?q=" + query;
+                    if(auxParams.size) {
+                        var sizeParam = "size=" + auxParams.size;
+                        if(params.length > 0) params = params + "&";
+                        else params = params + "?";
+                        params = params + sizeParam;
+                    }
+                    if(auxParams.page || auxParams.page === 0) {
+                        var pageNumParam = "page=" + auxParams.page;
+                        if(params.length > 0) params = params + "&";
+                        else params = params + "?";
+                        params = params + pageNumParam;
+                    }
+                    if(auxParams.sort) {
+                        var sortParam = 'sort=' + auxParams.sort;
+                        if(params.length > 0) params = params + "&";
+                        else params = params + "?";
+                        params = params + sortParam;
+                    }
+                    window.history.replaceState(stateObj,
+                        "search", "/search" + params);
+                }
+            }
+        });
+
+        // initialization of header
+        $.HSCore.components.HSHeader.init($('#js-header'));
+        $.HSCore.helpers.HSHamburgers.init('.hamburger');
+
+        // initialization of HSMegaMenu component
+        $('.js-mega-menu').HSMegaMenu({
+            event: 'hover',
+            pageContainer: $('.container'),
+            breakpoint: 991
+        });
+
+        // initialization of HSDropdown component
+        $.HSCore.components.HSDropdown.init($('[data-dropdown-target]'), {
+            afterOpen: function () {
+                $(this).find('input[type="search"]').focus();
+            }
+        });
+
+        // initialization of HSScrollBar component
+        $.HSCore.components.HSScrollBar.init($('.js-scrollbar'));
+
+        // initialization of go to
+        $.HSCore.components.HSGoTo.init('.js-go-to');
+
+        // initialization of rating
+        $.HSCore.helpers.HSRating.init();
+
+        // initialization of range slider
+        // $.HSCore.components.HSSlider.init('#rangeSlider1');
+
+        // initialization of popups
+        $.HSCore.components.HSModalWindow.init('[data-modal-target]');
+    });
+</script>
+</body>
+</html>

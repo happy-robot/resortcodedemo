@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<div th:fragment="filter-form">
+
+    <div class="faceted-filter-form">
+
+        <div v-for="(filter, index) in filters">
+            <div class="g-mb-30">
+                <h3 class="h5 mb-3">{{filter.title}}</h3>
+
+                <ul class="list-unstyled">
+                    <li class="my-2" v-for="row in filter.rows">
+                        <label class="form-check-inline u-check d-block u-link-v5 g-color-gray-dark-v4 g-color-primary--hover g-pl-30">
+                            <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox" v-model="row.active" @change="fetchData">
+                            <span class="d-block u-check-icon-checkbox-v4 g-absolute-centered--y g-left-0">
+                            <i class="fa" data-check-icon="&#xf00c"></i>
+                          </span>
+                            {{row.title}}
+                        </label>
+                    </li>
+                </ul>
+            </div>
+
+            <div v-if="filter.id == 'localityId'">
+                <hr>
+                <div class="g-mb-30">
+                    <h3 class="h5 mb-3" th:text="#{ad.faceted.search.price.per.day.tg}">Pricing</h3>
+
+                    <ul class="list-unstyled">
+                        <li class="my-2">
+                            <div class="row row-cols-2">
+                                <div class="col">
+                                    <input class="form-control g-color-black g-bg-white g-bg-white--focus
+                                                g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15 form-input-ar"
+                                           th:placeholder="#{ad.faceted.search.from.placeholder}"
+                                           type="number" min="1" id="priceFromInput" name="floor" value="" v-model.lazy="startPrice" @change="fetchData">
+
+                                </div>
+                                <div class="col">
+                                    <input class="form-control g-color-black g-bg-white g-bg-white--focus
+                                                g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15 form-input-ar"
+                                           th:placeholder="#{ad.faceted.search.to.placeholder}"
+                                           type="number" min="1" id="priceToInput" name="buildingFloors" value="" v-model.lazy="endPrice" @change="fetchData">
+
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div v-if="filter.id == 'housingType'">
+                <hr>
+                <div class="g-mb-30">
+                    <h3 class="h5 mb-3" th:text="#{common.rooms.num}">Комнат</h3>
+
+                    <ul class="list-unstyled">
+                        <li class="my-2">
+                            <div class="row row-cols-2">
+                                <div class="col">
+                                    <input class="form-control g-color-black g-bg-white g-bg-white--focus
+                                                g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15 form-input-ar"
+                                           th:placeholder="#{ad.faceted.search.from.placeholder}"
+                                           type="number" min="1" id="floorInput" name="floor" value="" v-model.lazy="startRoomNum" @change="fetchData">
+
+                                </div>
+                                <div class="col">
+                                    <input class="form-control g-color-black g-bg-white g-bg-white--focus
+                                                g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15 form-input-ar"
+                                           th:placeholder="#{ad.faceted.search.to.placeholder}"
+                                           type="number" min="1" id="buildingFloors" name="buildingFloors" value="" v-model.lazy="endRoomNum" @change="fetchData">
+
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr v-if="index != Object.keys(filters).length - 1">
+        </div>
+
+    </div>
+</div>
+
+
+
+<div th:fragment="filter-form-mobile">
+
+    <div class="faceted-filter-form">
+
+        <div class="g-mb-30" v-if="localityMobileFilter">
+            <h3 class="h5 mb-3">{{localityMobileFilter.title}}</h3>
+
+            <ul class="list-unstyled">
+                <li class="my-2" v-for="row in localityMobileFilter.rows">
+                    <label class="form-check-inline u-check d-block u-link-v5 g-color-gray-dark-v4 g-color-primary--hover g-pl-30">
+                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox" v-model="row.active">
+                        <span class="d-block u-check-icon-checkbox-v4 g-absolute-centered--y g-left-0">
+                            <i class="fa" data-check-icon="&#xf00c"></i>
+                          </span>
+                        {{row.title}}
+                    </label>
+                </li>
+            </ul>
+        </div>
+
+        <hr>
+
+
+        <div class="g-mb-30" v-if="housingTypeMobileFilter">
+            <h3 class="h5 mb-3">{{housingTypeMobileFilter.title}}</h3>
+
+            <ul class="list-unstyled">
+                <li class="my-2" v-for="row in housingTypeMobileFilter.rows">
+                    <label class="form-check-inline u-check d-block u-link-v5 g-color-gray-dark-v4 g-color-primary--hover g-pl-30">
+                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox" v-model="row.active">
+                        <span class="d-block u-check-icon-checkbox-v4 g-absolute-centered--y g-left-0">
+                            <i class="fa" data-check-icon="&#xf00c"></i>
+                          </span>
+                        {{row.title}}
+                    </label>
+                </li>
+            </ul>
+        </div>
+
+        <hr>
+
+
+        <div class="g-mb-30">
+            <h3 class="h5 mb-3" v-on:click="mobile.extendedSearchHidden = !mobile.extendedSearchHidden" v-show="mobile.extendedSearchHidden">
+                <th:block th:text="#{ad.faceted.search.extended}"></th:block>
+                <i class="icon-arrow-down pull-right" v-show="mobile.extendedSearchHidden"></i>
+            </h3>
+            <h3 class="h5 mb-3" v-on:click="mobile.extendedSearchHidden = !mobile.extendedSearchHidden" v-show="!mobile.extendedSearchHidden">
+                <th:block th:text="#{ad.faceted.search.extended.return}"></th:block>
+                <i class="icon-arrow-up pull-right" v-show="!mobile.extendedSearchHidden"></i>
+            </h3>
+
+            <slide-up-down :active="!mobile.extendedSearchHidden">
+
+                <div class="g-mb-30">
+                    <h3 class="h5 mb-3" th:text="#{ad.faceted.search.price.per.day.tg}">Pricing</h3>
+
+                    <ul class="list-unstyled">
+                        <li class="my-2">
+                            <div class="row row-cols-2">
+                                <div class="col">
+                                    <input class="form-control g-color-black g-bg-white g-bg-white--focus
+                                                g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15 form-input-ar"
+                                           th:placeholder="#{ad.faceted.search.from.placeholder}"
+                                           type="number" min="1" id="priceFromInput" name="floor" value="" v-model.lazy="mobile.startPrice">
+
+                                </div>
+                                <div class="col">
+                                    <input class="form-control g-color-black g-bg-white g-bg-white--focus
+                                                g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15 form-input-ar"
+                                           th:placeholder="#{ad.faceted.search.to.placeholder}"
+                                           type="number" min="1" id="priceToInput" name="buildingFloors" value="" v-model.lazy="mobile.endPrice">
+
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <hr>
+
+                <div class="g-mb-30">
+                    <h3 class="h5 mb-3" th:text="#{common.rooms.num}">Комнат</h3>
+
+                    <ul class="list-unstyled">
+                        <li class="my-2">
+                            <div class="row row-cols-2">
+                                <div class="col">
+                                    <input class="form-control g-color-black g-bg-white g-bg-white--focus
+                                                g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15 form-input-ar"
+                                           th:placeholder="#{ad.faceted.search.from.placeholder}"
+                                           type="number" min="1" id="floorInput" name="floor" value="" v-model.lazy="mobile.startRoomNum">
+
+                                </div>
+                                <div class="col">
+                                    <input class="form-control g-color-black g-bg-white g-bg-white--focus
+                                                g-brd-gray-light-v3 g-brd-primary--hover rounded g-py-13 g-px-15 form-input-ar"
+                                           th:placeholder="#{ad.faceted.search.to.placeholder}"
+                                           type="number" min="1" id="buildingFloors" name="buildingFloors" value="" v-model.lazy="mobile.endRoomNum">
+
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <hr>
+
+                <div v-for="(filter, index) in mobile.filters" v-if="filter.id != 'localityId' && filter.id != 'housingType'">
+                    <div class="g-mb-30">
+                        <h3 class="h5 mb-3">{{filter.title}}</h3>
+
+                        <ul class="list-unstyled">
+                            <li class="my-2" v-for="row in filter.rows">
+                                <label class="form-check-inline u-check d-block u-link-v5 g-color-gray-dark-v4 g-color-primary--hover g-pl-30">
+                                    <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox" v-model="row.active">
+                                    <span class="d-block u-check-icon-checkbox-v4 g-absolute-centered--y g-left-0">
+                            <i class="fa" data-check-icon="&#xf00c"></i>
+                          </span>
+                                    {{row.title}}
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                    <hr v-if="index != Object.keys(filters).length - 1">
+                </div>
+
+
+            </slide-up-down>
+        </div>
+
+        <hr>
+
+
+        <button class="btn btn-block u-btn-primary g-py-12 g-px-25 g-font-size-18" type="button" v-on:click="doSearchForMobile()"
+                th:text="#{ad.faceted.search.submit.label}">Reset</button>
+
+    </div>
+</div>
+
+</body>
+
+</html>

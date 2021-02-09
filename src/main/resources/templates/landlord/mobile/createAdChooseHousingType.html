@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Title -->
+    <title>Unify - Responsive Website Template</title>
+
+    <!-- Required Meta Tags Always Come First -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" th:href="@{/favicon.ico}">
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,900">
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/bootstrap/bootstrap.min.css}">
+    <!-- CSS Unify Theme -->
+    <link rel="stylesheet" th:href="@{/unify/e-commerce/assets/css/styles.e-commerce.css}">
+
+    <!-- CSS Customization -->
+<!--    <link rel="stylesheet" th:href="@{/unify/assets/css/custom.css}">-->
+    <link rel="stylesheet" th:href="@{/css/app.min.css}">
+
+</head>
+
+<body>
+<main>
+
+    <div class="container">
+        <div class="row g-mt-15">
+            <div class="col">
+                <svg viewBox="0 0 24 24" width="1em" height="1em" class="mobile-nav-item" onclick="goHistoryBack()">
+                    <path fill="currentColor" fill-rule="evenodd"
+                          d="M15.547 2l-1.305 1.27L6 11.293v1.414l8.242 8.022L15.547 22H17v-1.414l-1.305-1.271L8.18 12l7.515-7.316L17 3.414V2z"></path>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <div class="container g-py-30 g-py-100--md">
+        <div class="g-max-width-645 mx-auto g-mb-10">
+            <h2 class="h4 mb-3 g-font-weight-400" th:text="#{mobile.cabinet.ad.creation.choose-housing-type.header}">Create add</h2>
+        </div>
+
+        <div class="row g-py-10 g-my-10">
+            <a th:href="@{/my/ads/create(ht=${T(kz.kaps.resort.core.domain.HousingType).SUMMER_HOUSE})}" class="g-width-100x">
+                <div class="col category">
+                    <div>
+                        <img class="img-fluid g-brd-around g-brd-gray-light-v2 rounded-circle" th:src="@{/unify/assets/img-temp/100x100/img1.jpg}">
+                        <span class="align-middle g-ml-10" th:text="#{single.SUMMER_HOUSE}">Летний домик</span>
+                    </div>
+                    <svg viewBox="0 0 24 24" width="1em" height="1em">
+                        <path fill="currentColor" fill-rule="evenodd"
+                              d="M7 2v1.414l1.271 1.27L15.586 12l-7.315 7.315L7 20.585V22h1.414l1.27-1.271L17 13.414l1-1v-.827l-3.942-3.942v-.001L9.686 3.271 8.413 2z"></path>
+                    </svg>
+
+                </div>
+            </a>
+        </div>
+
+        <hr class="g-my-0">
+
+        <div class="row g-py-10 g-my-10">
+            <a th:href="@{/my/ads/create(ht=${T(kz.kaps.resort.core.domain.HousingType).HOUSE})}" class="g-width-100x">
+                <div class="col category">
+                    <div>
+                        <img class="img-fluid g-brd-around g-brd-gray-light-v2 rounded-circle" th:src="@{/unify/assets/img-temp/100x100/img1.jpg}">
+                        <span class="align-middle g-ml-10" th:text="#{single.HOUSE}">Летний домик</span>
+                    </div>
+                    <svg viewBox="0 0 24 24" width="1em" height="1em">
+                        <path fill="currentColor" fill-rule="evenodd"
+                              d="M7 2v1.414l1.271 1.27L15.586 12l-7.315 7.315L7 20.585V22h1.414l1.27-1.271L17 13.414l1-1v-.827l-3.942-3.942v-.001L9.686 3.271 8.413 2z"></path>
+                    </svg>
+
+                </div>
+            </a>
+        </div>
+
+        <hr class="g-my-0">
+
+        <div class="row g-py-10 g-my-10">
+            <a th:href="@{/my/ads/create(ht=${T(kz.kaps.resort.core.domain.HousingType).FLAT})}" class="g-width-100x">
+                <div class="col category">
+                    <div>
+                        <img class="img-fluid g-brd-around g-brd-gray-light-v2 rounded-circle" th:src="@{/unify/assets/img-temp/100x100/img1.jpg}">
+                        <span class="align-middle g-ml-10" th:text="#{single.FLAT}">Летний домик</span>
+                    </div>
+                    <svg viewBox="0 0 24 24" width="1em" height="1em">
+                        <path fill="currentColor" fill-rule="evenodd"
+                              d="M7 2v1.414l1.271 1.27L15.586 12l-7.315 7.315L7 20.585V22h1.414l1.27-1.271L17 13.414l1-1v-.827l-3.942-3.942v-.001L9.686 3.271 8.413 2z"></path>
+                    </svg>
+
+                </div>
+            </a>
+        </div>
+
+        <hr class="g-my-0">
+
+        <div class="row g-py-10 g-my-10">
+            <a th:href="@{/my/ads/create(ht=${T(kz.kaps.resort.core.domain.HousingType).COTTAGE})}" class="g-width-100x">
+                <div class="col category">
+                    <div>
+                        <img class="img-fluid g-brd-around g-brd-gray-light-v2 rounded-circle" th:src="@{/unify/assets/img-temp/100x100/img1.jpg}">
+                        <span class="align-middle g-ml-10" th:text="#{single.COTTAGE}">Летний домик</span>
+                    </div>
+                    <svg viewBox="0 0 24 24" width="1em" height="1em">
+                        <path fill="currentColor" fill-rule="evenodd"
+                              d="M7 2v1.414l1.271 1.27L15.586 12l-7.315 7.315L7 20.585V22h1.414l1.27-1.271L17 13.414l1-1v-.827l-3.942-3.942v-.001L9.686 3.271 8.413 2z"></path>
+                    </svg>
+
+                </div>
+            </a>
+        </div>
+
+
+    </div>
+
+</main>
+
+<!-- JS Plugins Init. -->
+<script>
+    function goHistoryBack() {
+        window.history.back();
+    }
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<div th:fragment="header">
+
+    <!-- Header -->
+    <header id="js-header" class="u-header u-header--static u-header--toggle-section u-shadow-v19 d-none d-sm-block">
+        <div class="u-header__section u-header__section--light g-bg-white g-transition-0_3 g-py-10">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container">
+
+                    <!-- Logo -->
+                    <a th:href="@{/}" class="navbar-brand">
+                        <img src="../../../assets/img/logo/logo-1.png" alt="Image Description">
+                    </a>
+                    <!-- End Logo -->
+
+                    <!-- Navigation -->
+                    <div class="collapse navbar-collapse align-items-center flex-sm-row g-pt-10 g-pt-5--lg g-flex-end" id="navBar">
+
+                        <a th:href="@{/cabinet}" class="btn btn-md" th:text="#{header.cabinet}">Primary</a>
+                        <a class="btn btn-md g-pl-0"
+                           href="/logout" th:href="@{#}" onclick="$('#logoutform').submit();"
+                           th:if="${#authorization.expression('isAuthenticated()')}" th:text="#{logout.do}">Logout</a>
+                        <form style="visibility: hidden" id="logoutform" method="post" action="#"
+                              th:action="@{/logout}"></form>
+                        <a th:href="@{/my/ads/create/choose-housing-type}"
+                           class="btn btn-md u-btn-primary g-font-weight-500" th:text="#{header.create.ad}">Primary</a>
+                    </div>
+                    <!-- End Navigation -->
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- End Header -->
+</div>
+
+<div th:fragment="header-mobile">
+    <div class="g-py-5 g-px-15 g-brd-bottom g-brd-gray-light-v4 g-font-weight-500 g-color-white g-font-size-18 d-flex
+         justify-content-start align-items-center g-background-color-primary">
+        <span class="g-pl-5">resort.kz</span>
+    </div>
+</div>
+
+</body>
+
+</html>

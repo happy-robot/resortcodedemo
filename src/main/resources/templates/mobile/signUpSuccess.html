@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Title -->
+    <title>Unify - Responsive Website Template</title>
+
+    <!-- Required Meta Tags Always Come First -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" th:href="@{/favicon.ico}">
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,900">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/icon-line/css/simple-line-icons.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/icon-material/material-icons.css}">
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/bootstrap/bootstrap.min.css}">
+    <!-- CSS Unify Theme -->
+    <link rel="stylesheet" th:href="@{/unify/e-commerce/assets/css/styles.e-commerce.css}">
+
+    <!-- CSS Customization -->
+    <!--    <link rel="stylesheet" th:href="@{/unify/assets/css/custom.css}">-->
+    <link rel="stylesheet" th:href="@{/css/app.min.css}">
+
+</head>
+
+<body>
+<main>
+
+    <div class="container g-py-50">
+
+        <div class="row">
+            <div class="col-12 text-center">
+                <h5 class="h4 mb-3 g-font-weight-400 g-mb-5" th:text="#{signup.success.header}">Ваши объявления</h5>
+                <p></p>
+            </div>
+        </div>
+
+
+        <a th:href="@{/cabinet}" class="btn btn-block u-btn-primary g-font-size-18 g-px-25 g-py-7 g-mt-15 g-font-weight-500"
+           th:text="#{login.do}">Login</a>
+
+    </div>
+
+</main>
+
+
+</body>
+</html>

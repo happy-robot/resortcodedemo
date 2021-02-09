@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Title -->
+    <title>Unify - Responsive Website Template</title>
+
+    <!-- Required Meta Tags Always Come First -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" th:href="@{/favicon.ico}">
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,900">
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/bootstrap/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/icon-line/css/simple-line-icons.css}">
+
+    <!-- CSS Unify -->
+    <!--<link rel="stylesheet" th:href="@{/unify/assets/css/unify-core.css}">-->
+    <!--<link rel="stylesheet" th:href="@{/unify/assets/css/unify-components.css}">-->
+    <!--<link rel="stylesheet" th:href="@{/unify/assets/css/unify-globals.css}">-->
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/icon-awesome/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/icon-line-pro/style.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/icon-hs/style.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/hamburgers/hamburgers.min.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/hs-megamenu/src/hs.megamenu.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.min.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/animate.css}">
+
+    <!-- CSS Unify Theme -->
+    <link rel="stylesheet" th:href="@{/unify/e-commerce/assets/css/styles.e-commerce.css}">
+
+    <!-- CSS Customization -->
+<!--    <link rel="stylesheet" th:href="@{/unify/assets/css/custom.css}">-->
+    <link rel="stylesheet" th:href="@{/css/app.min.css}">
+
+</head>
+
+<body>
+<main>
+    <th:block th:include="~{header :: header}"></th:block>
+
+    <!-- Breadcrumbs -->
+    <section class="g-brd-top g-brd-bottom g-brd-gray-light-v4 g-py-15">
+        <div class="container g-bg-cover__inner">
+            <ul class="u-list-inline">
+                <li class="list-inline-item g-mr-7">
+                    <a class="u-link-v5 g-color-main" th:href="@{/}" th:text="#{breadcrumb.home}">Home</a>
+                    <i class="fa fa-angle-right g-ml-7"></i>
+                </li>
+                <li class="list-inline-item">
+                    <span th:text="#{breadcrumb.cabinet}">About Us</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <!-- End Breadcrumbs -->
+
+
+    <div class="container g-pt-40 g-pb-30">
+        <div class="row justify-content-end g-mb-20 g-mb-0--md">
+            <div class="col-md-7 justify-content-end g-mb-10">
+                <div class="input-group-append justify-content-end g-brd-none g-py-0">
+                    <a class="btn btn-md u-btn-primary g-font-weight-500" th:href="@{/my/ads/create/choose-housing-type}"
+                       th:text="#{cabinet.cta.create.ad}">create ad</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Orders -->
+            <div class="col-lg-12 g-mb-50">
+                <!--<div class="row justify-content-end g-mb-20 g-mb-0&#45;&#45;md">-->
+                <!--<div class="col-md-7 g-mb-30">-->
+                <!--&lt;!&ndash; Search Form &ndash;&gt;-->
+                <!--<form class="input-group g-pos-rel">-->
+                <!--<span class="g-pos-abs g-top-0 g-left-0 g-z-index-3 g-px-13 g-py-10">-->
+                <!--<i class="g-color-gray-dark-v4 g-font-size-12 icon-education-045 u-line-icon-pro"></i>-->
+                <!--</span>-->
+                <!--<input class="form-control u-form-control g-brd-around g-brd-gray-light-v3 g-brd-primary&#45;&#45;focus g-font-size-13 g-rounded-left-5 g-pl-35 g-pa-0" type="search" placeholder="Search all orders">-->
+                <!--<div class="input-group-append g-brd-none g-py-0">-->
+                <!--<button class="btn u-btn-black g-font-size-12 text-uppercase g-py-12 g-px-25" type="submit">Search Orders</button>-->
+                <!--</div>-->
+                <!--</form>-->
+                <!--&lt;!&ndash; End Search Form &ndash;&gt;-->
+                <!--</div>-->
+                <!--</div>-->
+
+                <!-- Links -->
+                <ul class="list-inline g-brd-bottom--sm g-brd-gray-light-v3 mb-5">
+                    <li class="list-inline-item g-pb-10 g-pr-10 g-mb-20 g-mb-0--sm">
+                        <a class="g-brd-bottom g-brd-2 g-text-underline--none--hover g-px-10 g-pb-13 default-text-color"
+                           th:classappend="|${status == null? 'g-brd-primary' : ''}
+                           ${status != null? 'g-brd-transparent' : ''}
+                           ${status != null? 'g-color-primary--hover' : ''}|"
+                           th:href="@{/my/ads}" th:text="#{cabinet.my.ads.active}">Orders</a>
+                    </li>
+                    <li class="list-inline-item g-pb-10 g-px-10 g-mb-20 g-mb-0--sm">
+                        <a class="g-brd-bottom g-brd-2 g-text-underline--none--hover g-px-10 g-pb-13 default-text-color"
+                           th:classappend="|${status == T(kz.kaps.resort.core.domain.AdStatusEnum).DRAFT? 'g-brd-primary' : ''}
+                           ${status != T(kz.kaps.resort.core.domain.AdStatusEnum).DRAFT? 'g-brd-transparent' : ''}
+                           ${status != T(kz.kaps.resort.core.domain.AdStatusEnum).DRAFT? 'g-color-primary--hover' : ''}|"
+                           th:href="@{/my/ads(status='DRAFT')}" th:text="#{cabinet.my.ads.nonactive}">Open Orders</a>
+                    </li>
+                </ul>
+                <!-- End Links -->
+
+                <div th:if="${#lists.isEmpty(ads)}">
+                    <div class="row">
+                        <div class="col">
+                            <span th:text="#{cabinet.my.ads.does.not.exist}"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Block -->
+                <div th:each="ad : ${ads}" class="g-brd-around g-brd-gray-light-v4 rounded g-mb-30">
+                    <!-- Order Content -->
+                    <div class="g-pa-20">
+                        <div class="row">
+                            <div th:classappend="${ad.status != T(kz.kaps.resort.core.domain.AdStatusEnum).DRAFT} ? col : 'col-sm-8'">
+
+                                <div class="row row-cols-1 row-cols-sm-2">
+                                    <div class="col-12 col-sm-4 col-md-3 g-mb-30 g-mb-0--sm">
+                                        <img class="img-fluid" th:src="@{${ad.getImageUrlForMediumSize()}}" alt="Image Description">
+                                    </div>
+
+                                    <div class="col-12 col-sm-8 col-md-9">
+                                        <h4 class="h5 mb-0 mt-1 g-font-weight-400" th:text="${ad.getHeader()}"></h4>
+
+                                        <span class="g-color-gray-dark-v4 mb-2" th:text="${ad.getLocalityNameRu()}">Sold by: Unify.com LLC</span>
+                                        <span class="d-block mb-2">
+                                            <b class="h5 mb-0 mt-1 g-font-weight-500" th:text="${ad.getWeekdayPricePerDay()}"></b>
+                                            <span class="g-color-gray-dark-v4" th:if="${ad.getWeekdayPricePerDay()}">
+                                                <th:block th:if="${ad.getHousingType() == T(kz.kaps.resort.core.domain.HousingType).SUMMER_HOUSE}"
+                                                          th:text="#{common.price.per.day.per.person.tg}"></th:block>
+                                                <th:block th:if="${ad.getHousingType() != T(kz.kaps.resort.core.domain.HousingType).SUMMER_HOUSE}"
+                                                          th:text="#{cabinet.my.ads.price.per.day.tg}"></th:block>,
+
+                                                <th:block th:text="#{cabinet.my.ads.price.in.weekdays}"></th:block>
+                                            </span>
+
+                                        </span>
+                                        <span class="d-block mb-2">
+                                            <b class=" h5 mb-0 mt-1 g-font-weight-500" th:text="${ad.getHolidayPricePerDay()}"></b>
+                                            <span class="g-color-gray-dark-v4" th:if="${ad.getHolidayPricePerDay()}">
+                                                <th:block th:if="${ad.getHousingType() == T(kz.kaps.resort.core.domain.HousingType).SUMMER_HOUSE}"
+                                                          th:text="#{common.price.per.day.per.person.tg}"></th:block>
+                                                <th:block th:if="${ad.getHousingType() != T(kz.kaps.resort.core.domain.HousingType).SUMMER_HOUSE}"
+                                                          th:text="#{cabinet.my.ads.price.per.day.tg}"></th:block>,
+
+                                                <th:block th:text="#{cabinet.my.ads.price.in.holidays}"></th:block>
+                                            </span>
+                                        </span>
+
+                                        <a th:href="@{/ads/{id}(id = ${ad.getId()})}" class="text-primary g-mr-15" th:text="#{common.do.view}"
+                                           th:if="${ad.status == T(kz.kaps.resort.core.domain.AdStatusEnum).PUBLISHED or ad.status == T(kz.kaps.resort.core.domain.AdStatusEnum).DRAFT}">
+                                            Просмотреть</a>
+                                        <a th:href="@{/my/ads/edit/{id}(id = ${ad.getId()})}"
+                                           class="text-primary g-mr-15" th:text="#{common.do.edit}"
+                                           th:if="${ad.status == T(kz.kaps.resort.core.domain.AdStatusEnum).PUBLISHED or ad.status == T(kz.kaps.resort.core.domain.AdStatusEnum).DRAFT}">
+                                            Редактировать</a>
+                                        <a th:href="@{/my/ads/{id}/deactivate(id = ${ad.getId()})}"
+                                           th:if="${ad.status == T(kz.kaps.resort.core.domain.AdStatusEnum).PUBLISHED}"
+                                           class="text-primary g-mr-15" th:text="#{cabinet.my.ad.deactivate}">Деактивировать</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4 d-flex align-items-end g-mt-30" th:if="${ad.status == T(kz.kaps.resort.core.domain.AdStatusEnum).DRAFT}">
+                                <a class="btn btn-block u-btn-primary g-font-size-12 text-uppercase g-py-12 g-px-25 mb-4"
+                                   th:href="@{/my/ads/{id}/activate(id = ${ad.getId()})}" th:text="#{cabinet.my.ad.activate}">activate</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Order Content -->
+                </div>
+                <!-- End Order Block -->
+
+            </div>
+            <!-- Orders -->
+        </div>
+    </div>
+
+
+
+</main>
+
+<!-- JS Global Compulsory -->
+<script th:src="@{/unify/assets/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/jquery-migrate/jquery-migrate.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/popper.js/popper.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/bootstrap/bootstrap.min.js}"></script>
+
+<!-- JS Implementing Plugins -->
+<script th:src="@{/unify/assets/vendor/jquery.countdown.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/hs-megamenu/src/hs.megamenu.js}"></script>
+<script th:src="@{/unify/assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.concat.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/appear.js}"></script>
+
+<!-- JS Unify -->
+<script th:src="@{/unify/assets/js/hs.core.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.header.js}"></script>
+<script th:src="@{/unify/assets/js/helpers/hs.hamburgers.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.dropdown.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.scrollbar.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.countdown.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.count-qty.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.go-to.js}"></script>
+
+<!-- JS Customization -->
+<script th:src="@{/unify/assets/js/custom.js}"></script>
+
+
+<!-- JS Plugins Init. -->
+<script>
+    // initialization of header
+    $.HSCore.components.HSHeader.init($('#js-header'));
+    $.HSCore.helpers.HSHamburgers.init('.hamburger');
+
+    // initialization of HSMegaMenu component
+    $('.js-mega-menu').HSMegaMenu({
+        event: 'hover',
+        pageContainer: $('.container'),
+        breakpoint: 991
+    });
+
+    // initialization of HSDropdown component
+    $.HSCore.components.HSDropdown.init($('[data-dropdown-target]'), {
+        afterOpen: function () {
+            $(this).find('input[type="search"]').focus();
+        }
+    });
+
+    // initialization of go to
+    $.HSCore.components.HSGoTo.init('.js-go-to');
+
+    // initialization of quantity counter
+    $.HSCore.components.HSCountQty.init('.js-quantity');
+
+    // initialization of countdowns
+    var countdowns = $.HSCore.components.HSCountdown.init('.js-countdown', {
+        yearsElSelector: '.js-cd-years',
+        monthElSelector: '.js-cd-month',
+        daysElSelector: '.js-cd-days',
+        hoursElSelector: '.js-cd-hours',
+        minutesElSelector: '.js-cd-minutes',
+        secondsElSelector: '.js-cd-seconds'
+    });
+
+    $(window).on('load', function() {
+        // initialization of HSScrollBar component
+        $.HSCore.components.HSScrollBar.init($('.js-scrollbar'));
+    });
+</script>
+
+
+</body>
+</html>

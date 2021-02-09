@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<div th:fragment="footer">
+
+    <!-- BEGIN PRE-FOOTER -->
+    <div class="pre-footer">
+        <div class="container padding-top-10">
+            <div class="row">
+                <!-- BEGIN BOTTOM ABOUT BLOCK -->
+                <div class="col-md-6 col-sm-6 col-xs-6 pre-footer-col">
+                    <ul class="list-unstyled">
+                        <li><i class="fa fa-angle-right"></i> <a href="@{Application.about()}" th:text="#{views.main.about.site}"></a></li>
+                    </ul>
+                </div>
+                <!-- END BOTTOM ABOUT BLOCK -->
+                <!-- BEGIN BOTTOM INFO BLOCK -->
+                <div class="col-md-6 col-sm-6 col-xs-6 pre-footer-col">
+                    <ul class="list-unstyled">
+                        <li><i class="fa fa-angle-right"></i> <a href="@{Application.partnership()}" th:text="#{views.main.partnership}"></a></li>
+                    </ul>
+                </div>
+                <!-- END INFO BLOCK -->
+            </div>
+        </div>
+    </div>
+    <!-- END PRE-FOOTER -->
+
+
+    <!-- BEGIN FOOTER -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- BEGIN COPYRIGHT -->
+                <div class="col-md-12 col-sm-12 text-center padding-top-10">
+                    Разработка сайтов amirkapsatarov@gmail.com
+                </div>
+                <!-- END COPYRIGHT -->
+            </div>
+        </div>
+    </div>
+    <!-- END FOOTER -->
+
+</div>
+</body>
+
+</html>

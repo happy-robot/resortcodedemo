@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Title -->
+    <title>Unify - Responsive Website Template</title>
+
+    <!-- Required Meta Tags Always Come First -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" th:href="@{/favicon.ico}">
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,900">
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/bootstrap/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/icon-line/css/simple-line-icons.css}">
+
+    <!-- CSS Unify -->
+    <!--<link rel="stylesheet" th:href="@{/unify/assets/css/unify-core.css}">-->
+    <link rel="stylesheet" th:href="@{/unify/assets/css/unify-components.css}">
+    <!--<link rel="stylesheet" th:href="@{/unify/assets/css/unify-globals.css}">-->
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/icon-awesome/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/icon-line-pro/style.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/icon-hs/style.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/hamburgers/hamburgers.min.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/hs-megamenu/src/hs.megamenu.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.min.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/animate.css}">
+
+    <!-- CSS Unify Theme -->
+    <link rel="stylesheet" th:href="@{/unify/e-commerce/assets/css/styles.e-commerce.css}">
+
+    <!-- CSS Customization -->
+<!--    <link rel="stylesheet" th:href="@{/unify/assets/css/custom.css}">-->
+    <link rel="stylesheet" th:href="@{/css/app.min.css}">
+
+</head>
+
+<body>
+<main>
+    <th:block th:include="~{header :: header}"></th:block>
+
+    <div class="container g-py-40 g-py-100--md">
+        <div class="g-max-width-645 text-center mx-auto g-mb-30 g-mb-70--md">
+            <h2 class="h4 mb-3 g-font-weight-400 page-header" th:text="#{cabinet.ad.creation.choose-housing-type.header}">Create add</h2>
+        </div>
+
+        <div class="row align-items-center nav__row">
+            <div class="col-6 col-sm-6 col-md-3 g-mb-50--md g-px-0 g-px-15--md nav__item">
+                <!-- Icon Block -->
+                <a class="d-block u-block-hover u-shadow-v39--md g-brd-around g-brd-gray-light-v4 g-brd-purple--md text-center
+                rounded g-text-underline--none--hover g-transition-0_2 g-px-30--md g-px-0 g-pt-80--md g-py-10 g-pb-10"
+                   th:href="@{/my/ads/create(ht=${T(kz.kaps.resort.core.domain.HousingType).HOUSE})}">
+                    <span class="u-icon-v1 u-icon-size--lg g-color-teal g-transition-0_2 nav__icon">
+                      <i class="icon-real-estate-086 u-line-icon-pro"></i>
+                    </span>
+                    <span class="h5 d-block g-color-teal g-transition-0_2 nav__title">
+                        <span th:text="#{single.HOUSE}">Finding your way</span>
+                        <i class="icon-arrow-right g-hidden-md-up nav__title_icon"></i>
+                    </span>
+                    <button class="btn btn-md u-btn-primary g-mr-10 g-mb-15 g-mt-20 g-hidden-sm-down" type="button"
+                        th:text="#{cabinet.ad.creation.choose-housing-type.btn}">Подать объявление</button>
+                </a>
+                <!-- End Icon Block -->
+            </div>
+
+            <div class="col-6 col-sm-6 col-md-3 g-mb-50--md g-px-0 g-px-15--md nav__item">
+                <!-- Icon Block -->
+                <a class="d-block u-block-hover u-shadow-v39--md g-brd-around g-brd-gray-light-v4 g-brd-purple--md text-center
+                rounded g-text-underline--none--hover g-transition-0_2 g-px-30--md g-px-0 g-pt-80--md g-py-10 g-pb-10"
+                   th:href="@{/my/ads/create(ht=${T(kz.kaps.resort.core.domain.HousingType).SUMMER_HOUSE})}">
+                    <span class="u-icon-v1 u-icon-size--lg g-color-purple g-transition-0_2 nav__icon">
+                      <i class="icon-real-estate-003 u-line-icon-pro"></i>
+                    </span>
+                    <span class="h5 d-block g-color-teal g-transition-0_2 nav__title">
+                        <span th:text="#{single.SUMMER_HOUSE}">Finding your way</span>
+                        <i class="icon-arrow-right g-hidden-md-up nav__title_icon"></i>
+                    </span>
+                    <button class="btn btn-md u-btn-primary g-mr-10 g-mb-15 g-mt-20 g-hidden-sm-down" type="button"
+                            th:text="#{cabinet.ad.creation.choose-housing-type.btn}">Подать объявление</button>
+                </a>
+                <!-- End Icon Block -->
+            </div>
+
+            <div class="col-6 col-sm-6 col-md-3 g-mb-50--md g-px-0 g-px-15--md nav__item">
+                <!-- Icon Block -->
+                <a class="d-block u-block-hover u-shadow-v39--md g-brd-around g-brd-gray-light-v4 g-brd-purple--md text-center
+                rounded g-text-underline--none--hover g-transition-0_2 g-px-30--md g-px-0 g-pt-80--md g-py-10 g-pb-10"
+                   th:href="@{/my/ads/create(ht=${T(kz.kaps.resort.core.domain.HousingType).FLAT})}">
+                    <span class="u-icon-v1 u-icon-size--lg g-color-purple g-transition-0_2 nav__icon">
+                      <i class="icon-real-estate-011 u-line-icon-pro"></i>
+                    </span>
+                    <span class="h5 d-block g-color-teal g-transition-0_2 nav__title">
+                        <span th:text="#{single.FLAT}">Finding your way</span>
+                        <i class="icon-arrow-right g-hidden-md-up nav__title_icon"></i>
+                    </span>
+                    <button class="btn btn-md u-btn-primary g-mr-10 g-mb-15 g-mt-20 g-hidden-sm-down" type="button"
+                            th:text="#{cabinet.ad.creation.choose-housing-type.btn}">Подать объявление</button>
+                </a>
+                <!-- End Icon Block -->
+            </div>
+
+            <div class="col-6 col-sm-6 col-md-3 g-mb-50--md g-px-0 g-px-15--md nav__item">
+                <!-- Icon Block -->
+                <a class="d-block u-block-hover u-shadow-v39--md g-brd-around g-brd-gray-light-v4 g-brd-purple--md text-center
+                rounded g-text-underline--none--hover g-transition-0_2 g-px-30--md g-px-0 g-pt-80--md g-py-10 g-pb-10"
+                   th:href="@{/my/ads/create(ht=${T(kz.kaps.resort.core.domain.HousingType).COTTAGE})}">
+                    <span class="u-icon-v1 u-icon-size--lg g-color-purple g-transition-0_2 nav__icon">
+                      <i class="icon-real-estate-062 u-line-icon-pro"></i>
+                    </span>
+                    <span class="h5 d-block g-color-teal g-transition-0_2 nav__title">
+                        <span th:text="#{single.COTTAGE}">Finding your way</span>
+                        <i class="icon-arrow-right g-hidden-md-up nav__title_icon"></i>
+                    </span>
+                    <button class="btn btn-md u-btn-primary g-mr-10 g-mb-15 g-mt-20 g-hidden-sm-down" type="button"
+                            th:text="#{cabinet.ad.creation.choose-housing-type.btn}">Подать объявление</button>
+                </a>
+                <!-- End Icon Block -->
+            </div>
+
+
+        </div>
+
+    </div>
+
+</main>
+
+<!-- JS Global Compulsory -->
+<script th:src="@{/unify/assets/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/jquery-migrate/jquery-migrate.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/popper.js/popper.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/bootstrap/bootstrap.min.js}"></script>
+
+<!-- JS Implementing Plugins -->
+<script th:src="@{/unify/assets/vendor/jquery.countdown.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/hs-megamenu/src/hs.megamenu.js}"></script>
+<script th:src="@{/unify/assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.concat.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/appear.js}"></script>
+
+<!-- JS Unify -->
+<script th:src="@{/unify/assets/js/hs.core.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.header.js}"></script>
+<script th:src="@{/unify/assets/js/helpers/hs.hamburgers.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.dropdown.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.scrollbar.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.countdown.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.count-qty.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.go-to.js}"></script>
+
+<!-- JS Customization -->
+<script th:src="@{/unify/assets/js/custom.js}"></script>
+
+<!-- JS Plugins Init. -->
+<script>
+    // initialization of header
+    $.HSCore.components.HSHeader.init($('#js-header'));
+    $.HSCore.helpers.HSHamburgers.init('.hamburger');
+
+    // initialization of HSMegaMenu component
+    $('.js-mega-menu').HSMegaMenu({
+        event: 'hover',
+        pageContainer: $('.container'),
+        breakpoint: 991
+    });
+
+    // initialization of HSDropdown component
+    $.HSCore.components.HSDropdown.init($('[data-dropdown-target]'), {
+        afterOpen: function () {
+            $(this).find('input[type="search"]').focus();
+        }
+    });
+
+    // initialization of go to
+    $.HSCore.components.HSGoTo.init('.js-go-to');
+
+    // initialization of quantity counter
+    $.HSCore.components.HSCountQty.init('.js-quantity');
+
+    // initialization of countdowns
+    var countdowns = $.HSCore.components.HSCountdown.init('.js-countdown', {
+        yearsElSelector: '.js-cd-years',
+        monthElSelector: '.js-cd-month',
+        daysElSelector: '.js-cd-days',
+        hoursElSelector: '.js-cd-hours',
+        minutesElSelector: '.js-cd-minutes',
+        secondsElSelector: '.js-cd-seconds'
+    });
+
+    $(window).on('load', function() {
+        // initialization of HSScrollBar component
+        $.HSCore.components.HSScrollBar.init($('.js-scrollbar'));
+    });
+</script>
+
+
+</body>
+</html>

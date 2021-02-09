@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="~{general :: meta}"></th:block>
+    <th:block th:include="~{general :: headerfiles}"></th:block>
+</head>
+<body class="ecommerce">
+<div th:insert="~{header :: header}"></div>
+
+
+<div class="main">
+    <div class="container">
+
+        <ul class="breadcrumb">
+            <li><a th:href="@{/}" th:text="#{views.breadcrumb.Home}"></a></li>
+            <li>
+                <a th:href="@{/my/ads}" th:text="#{views.common.myAdds}"></a>
+            </li>
+            <li class="active">
+                <span th:text="#{views.common.page.add.creating}"></span>
+            </li>
+        </ul>
+
+
+
+
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+
+            <!-- BEGIN CONTENT -->
+            <div class="col-md-12 col-sm-12 col-xs-12">
+
+                <div class="content-form-page">
+                    <form role="form" class="form-horizontal form-without-legend" method="post"
+                          th:object="${newAd}" th:modelAttribute="newAd" th:action="@{/my/ads/create}">
+                        <h2 th:text="#{views.createAddPage.descriptionBlock}"></h2>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">
+                                <span th:text="#{views.common.housingType}"></span> <span class="require">*</span>
+                            </label>
+                            <div class="col-md-8">
+                                <select class="form-control" th:field="*{housingType}">
+                                    <option th:value="''"></option>
+                                    <option th:each="housingType : ${housingTypes}" th:value="${housingType}" th:text="#{'single.' + ${housingType}}"></option>
+                                </select>
+                                <p class="help-block" th:if="${#fields.hasErrors('housingType')}" th:errors="*{housingType}"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" for="room-num">
+                                <span th:text="#{views.createAddPage.roomNum}"></span> <span class="require">*</span>
+                            </label>
+                            <div class="col-lg-8">
+                                <input type="number" id="room-num" class="form-control" th:field="*{roomNum}">
+                                <p class="help-block" th:if="${#fields.hasErrors('roomNum')}" th:errors="*{roomNum}"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" for="area">
+                                <span th:text="#{views.createAddPage.area}"></span> <span class="require">*</span>
+                            </label>
+                            <div class="col-lg-8">
+                                <input type="number" id="area" class="form-control" th:field="*{area}" min="1" max="2000">
+                                <p class="help-block" th:if="${#fields.hasErrors('area')}" th:errors="*{area}"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" for="sleep-num">
+                                <span th:text="#{views.createAddPage.sleepNum}"></span>
+                            </label>
+                            <div class="col-lg-8">
+                                <input type="number" id="sleep-num" class="form-control" th:field="*{sleepNum}" min="1">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" th:text="#{views.search.convenience}"></label>
+                            <div class="col-lg-8 checkbox-list">
+                                <label>
+                                    <input type="checkbox" th:field="*{coldWater}" th:value="true" />
+                                    <span th:text="#{models.housing.coldWater}"></span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" th:field="*{hotWater}" th:value="true" />
+                                    <span th:text="#{models.housing.hotWater}"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" th:text="#{views.search.equipment}"></label>
+                            <div class="col-lg-8 checkbox-list">
+                                <label>
+                                    <input type="checkbox" th:field="*{fridge}" th:value="true" />
+                                    <span th:text="#{models.housing.fridge}"></span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" th:field="*{stove}" th:value="true" />
+                                    <span th:text="#{models.housing.stove}"></span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" th:field="*{microwave}" th:value="true" />
+                                    <span th:text="#{models.housing.microwave}"></span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" th:field="*{washer}" th:value="true" />
+                                    <span th:text="#{models.housing.washer}"></span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" th:field="*{wifi}" th:value="true" />
+                                    <span th:text="#{models.housing.wifi}"></span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" th:field="*{conditioner}" th:value="true" />
+                                    <span th:text="#{models.housing.conditioner}"></span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" th:field="*{tv}" th:value="true" />
+                                    <span th:text="#{models.housing.tv}"></span>
+                                </label>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" th:text="#{views.search.infrastructure}"></label>
+                            <div class="col-lg-8 checkbox-list">
+                                <label>
+                                    <input type="checkbox" th:field="*{sauna}" th:value="true" />
+                                    <span th:text="#{models.housing.sauna}"></span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" th:field="*{bathhouse}" th:value="true" />
+                                    <span th:text="#{models.housing.bathhouse}"></span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" th:field="*{swimmingPool}" th:value="true" />
+                                    <span th:text="#{models.housing.swimmingPool}"></span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" th:field="*{restaurant}" th:value="true" />
+                                    <span th:text="#{models.housing.restaurant}"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" th:text="#{views.search.other}"></label>
+                            <div class="col-lg-8 checkbox-list">
+                                <label>
+                                    <input type="checkbox" th:field="*{brazier}" th:value="true" />
+                                    <span th:text="#{models.housing.brazier}"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" for="description" th:text="#{views.createAddPage.description}"></label>
+                            <div class="col-lg-8">
+                                <textarea class="form-control" rows="6" id="description" th:field="*{description}"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-8 col-md-offset-2 padding-left-0 padding-top-20">
+                                <button class="btn btn-primary" type="submit">
+                                    <span th:text="#{views.createAddPage.createBtnText}"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <!-- END CONTENT -->
+        </div>
+
+
+    </div>
+</div>
+
+<div th:insert="~{footer :: footer}"></div>
+
+<th:block th:include="~{general :: footerfiles}"></th:block>
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        Layout.init();
+        Layout.initOWL();
+        LayersliderInit.initLayerSlider();
+        Layout.initImageZoom();
+        Layout.initTouchspin();
+        Layout.initTwitter();
+    });
+</script>
+
+
+<div th:insert="~{googleAnalytics :: googleAnalytics}"></div>
+
+</body>
+</html>

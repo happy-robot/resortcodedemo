@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Title -->
+    <title>E-commerce Single Product Page 2 | Unify - Responsive Website Template</title>
+
+    <!-- Required Meta Tags Always Come First -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" th:href="@{/favicon.ico}">
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,900">
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/bootstrap/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/icon-line/css/simple-line-icons.css}">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/icon-awesome/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/icon-line-pro/style.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/icon-hs/style.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/animate.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/hamburgers/hamburgers.min.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/hs-megamenu/src/hs.megamenu.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/slick-carousel/slick/slick.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.min.css}">
+
+    <!-- CSS Unify Theme -->
+    <link rel="stylesheet" th:href="@{/unify/e-commerce/assets/css/styles.e-commerce.css}">
+
+    <!-- CSS Customization -->
+<!--    <link rel="stylesheet" th:href="@{/unify/assets/css/custom.css}">-->
+    <link rel="stylesheet" th:href="@{/css/app.min.css}">
+</head>
+
+<body>
+<main>
+    <!-- Header -->
+    <th:block th:include="~{header :: header}"></th:block>
+    <!-- End Header -->
+
+
+    <!-- Breadcrumbs -->
+    <section th:if="${!isMobile}" class="g-brd-top g-brd-bottom g-brd-gray-light-v4 g-py-15">
+        <div class="container g-bg-cover__inner">
+            <ul class="u-list-inline">
+                <li class="list-inline-item g-mr-7">
+                    <a class="u-link-v5 g-color-main" th:href="@{/}" th:text="#{breadcrumb.home}">Home</a>
+                    <i class="fa fa-angle-right g-ml-7"></i>
+                </li>
+                <li class="list-inline-item g-mr-7">
+                    <a class="u-link-v5 g-color-main" th:href="@{/search}" th:text="#{breadcrumb.faceted.search}">Home</a>
+                    <i class="fa fa-angle-right g-ml-7"></i>
+                </li>
+                <li class="list-inline-item">
+                    <span th:text="${ad.getHeader()}">About Us</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <!-- End Breadcrumbs -->
+
+    <span class="u-icon-v1 g-mt-10 g-mb-10 d-inline-block d-sm-none" onclick="goHistoryBack()">
+        <i class="icon-arrow-left"></i>
+    </span>
+
+    <!-- Product Description -->
+    <div class="container g-pt-50--sm g-pb-0 g-pt-0 g-pb-50--sm">
+        <div class="row d-none d-sm-flex">
+            <div class="col">
+                <span class="h2 g-px-40 mb-3 page-header g-font-weight-300">
+                    <th:block th:text="${ad.getHeader()}"></th:block>
+<!--                    <span class="u-icon-v1 g-color-text g-pb-15" data-toggle="tooltip" data-placement="bottom" title="Добавить в избранное">-->
+<!--                        <i class="fa fa-star-o"></i>-->
+<!--                    </span>-->
+                </span>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col d-flex justify-content-end">
+                        <span class="h4 g-mb-0" th:text="${ad.getWeekdayPrice()}"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col d-flex justify-content-end">
+                        <span class="h5 g-mb-0" th:text="${ad.getHolidayPrice()}"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 order-sm-1 order-12">
+                <h2 class="h3 g-px-40 mb-3 g-font-weight-400 d-none d-sm-block"
+                    th:text="${ad.getAd().getOwner().getPhone()}">87011112233</h2>
+                <div class="g-px-40--lg g-pt-20--sm g-pt-0--sm">
+                    <!-- Product Info -->
+                    <div class="g-mb-30">
+<!--                        <h2 class="h2 mb-3 page-header g-font-weight-300 d-sm-none d-block">-->
+<!--                            Коттедж, 2-ух этажный, 5-комн,-->
+<!--                        </h2>-->
+                        <div class="d-flex d-sm-none justify-content-between align-items-center g-brd-bottom g-brd-gray-light-v3 py-0"
+                             role="tab">
+                            <span class="g-color-text mb-3">
+                                <th:block th:text="${ad.getHeader()}"></th:block>
+                            </span>
+<!--                            <span class="u-icon-v1 g-color-text g-pb-10">-->
+<!--                                <i class="fa fa-star-o"></i>-->
+<!--                            </span>-->
+                        </div>
+                        <div class="d-flex d-sm-none justify-content-between align-items-center g-brd-bottom g-brd-gray-light-v3 py-2"
+                             role="tab">
+                            <span class="g-color-gray-dark-v2 g-font-weight-500 mb-0" th:text="${ad.getWeekdayPrice()}"></span>
+                            <span class="g-color-text" th:text="#{ad.view.price.holydays.short}"></span>
+                        </div>
+                        <div class="d-flex d-sm-none justify-content-between align-items-center g-brd-bottom g-brd-gray-light-v3 py-2"
+                             role="tab">
+                            <span class="g-color-gray-dark-v2 g-font-weight-500 mb-0" th:text="${ad.getHolidayPrice()}"></span>
+                            <span class="g-color-text" th:text="#{ad.view.price.weekdays.short}"></span>
+                        </div>
+                        <div class="d-flex d-sm-none justify-content-between align-items-center g-brd-bottom g-brd-gray-light-v3 py-2"
+                             role="tab">
+                            <span class="g-color-gray-dark-v2 g-font-weight-500" th:text="${ad.getAd().getOwner().getPhone()}">
+                            </span>
+                        </div>
+                        <ul class="list-unstyled g-color-text g-pt-20 g-pt-0--sm">
+                            <li class="g-brd-bottom--dashed g-brd-gray-light-v3 pt-1 mb-3"
+                                th:if="${ad.getAd().getHousingType() != T(kz.kaps.resort.core.domain.HousingType).SUMMER_HOUSE}">
+                                <span th:text="#{ad.view.area}">Площадь</span>
+                                <span class="float-right g-color-gray-dark-v2">
+                                    <th:block th:text="${ad.getAd().getArea()}"></th:block>
+                                    <th:block th:text="#{ad.view.area.meters.short}"></th:block>
+                                    <sup><small>2</small></sup></span>
+                            </li>
+                            <li class="g-brd-bottom--dashed g-brd-gray-light-v3 pt-1 mb-3"
+                                th:if="${ad.getAd().getHousingType() != T(kz.kaps.resort.core.domain.HousingType).FLAT}">
+                                <span th:text="#{ad.view.territory.area}">Участок</span>
+                                <span class="float-right g-color-gray-dark-v2">
+                                    <th:block th:text="${ad.getAd().getTerritoryArea()}"></th:block>
+                                    <th:block th:text="#{common.area.hundreds.short}"></th:block>
+                                </span>
+                            </li>
+                            <li class="g-brd-bottom--dashed g-brd-gray-light-v3 pt-1 mb-3"
+                                th:if="${ad.getAd().getHousingType() == T(kz.kaps.resort.core.domain.HousingType).FLAT}">
+                                <span th:text="#{ad.view.floor}">Этаж</span>
+                                <span class="float-right g-color-gray-dark-v2">
+                                    <th:block th:text="${ad.getAd().getFloor()}"></th:block>
+                                </span>
+                            </li>
+                        </ul>
+<!--                        <h1 class="g-font-weight-300 mb-4">Men's Water<br>Resistant Jacket</h1>-->
+<!--                        <p>Dress is the "rain mac" version of our beloved essential the Unify Parka. Crafted from a water resistant fluid memory fabric to create an elegant draped effect when thrown on, this lightweight shell will take you from season to season and protect you from that unexpected shower.</p>-->
+                    </div>
+                    <!-- End Product Info -->
+
+                    <!-- Price -->
+                    <div class="g-mb-30 g-color-gray-dark-v3 row">
+                        <div class="col">
+                            <p class="g-mb-0" th:if="${ad.getAd().getHotWater()}">
+                                <span><i class="fa fa-check g-color-gray-dark-v5"></i></span> <th:block th:text="#{common.hot-water}"></th:block>
+                            </p>
+                            <p class="g-mb-0" th:if="${ad.getAd().getColdWater()}">
+                                <span><i class="fa fa-check g-color-gray-dark-v5"></i></span> <th:block th:text="#{common.cold-water}"></th:block>
+                            </p>
+                            <p class="g-mb-0" th:if="${ad.getAd().getBrazier()}">
+                                <span><i class="fa fa-check g-color-gray-dark-v5"></i></span> <th:block th:text="#{common.brazier}"></th:block>
+                            </p>
+                            <p class="g-mb-0" th:if="${ad.getAd().getSauna()}">
+                                <span><i class="fa fa-check g-color-gray-dark-v5"></i></span> <th:block th:text="#{common.sauna}"></th:block>
+                            </p>
+                            <p class="g-mb-0" th:if="${ad.getAd().getBathhouse()}">
+                                <span><i class="fa fa-check g-color-gray-dark-v5"></i></span> <th:block th:text="#{common.bathhouse}"></th:block>
+                            </p>
+                            <p class="g-mb-0" th:if="${ad.getAd().getSummerKitchen()}">
+                                <span><i class="fa fa-check g-color-gray-dark-v5"></i></span> <th:block th:text="#{common.summerKitchen}"></th:block>
+                            </p>
+                            <p class="g-mb-0" th:if="${ad.getAd().getAlcove()}">
+                                <span><i class="fa fa-check g-color-gray-dark-v5"></i></span> <th:block th:text="#{common.alcove}"></th:block>
+                            </p>
+<!--                        </div>-->
+<!--                        <div class="col">-->
+                            <p class="g-mb-0" th:if="${ad.getAd().getTv()}">
+                                <span><i class="fa fa-check g-color-gray-dark-v5"></i></span> <th:block th:text="#{common.tv}"></th:block>
+                            </p>
+                            <p class="g-mb-0" th:if="${ad.getAd().getMicrowave()}">
+                                <span><i class="fa fa-check g-color-gray-dark-v5"></i></span> <th:block th:text="#{common.microwave}"></th:block>
+                            </p>
+                            <p class="g-mb-0" th:if="${ad.getAd().getWifi()}">
+                                <span><i class="fa fa-check g-color-gray-dark-v5"></i></span> <th:block th:text="#{common.wifi}"></th:block>
+                            </p>
+                            <p class="g-mb-0" th:if="${ad.getAd().getFridge()}">
+                                <span><i class="fa fa-check g-color-gray-dark-v5"></i></span> <th:block th:text="#{common.fridge}"></th:block>
+                            </p>
+                            <p class="g-mb-0" th:if="${ad.getAd().getStove()}">
+                                <span><i class="fa fa-check g-color-gray-dark-v5"></i></span> <th:block th:text="#{common.stove}"></th:block>
+                            </p>
+                            <p class="g-mb-0" th:if="${ad.getAd().getWasher()}">
+                                <span><i class="fa fa-check g-color-gray-dark-v5"></i></span> <th:block th:text="#{common.washer}"></th:block>
+                            </p>
+                            <p class="g-mb-0" th:if="${ad.getAd().getConditioner()}">
+                                <span><i class="fa fa-check g-color-gray-dark-v5"></i></span> <th:block th:text="#{common.conditioner}"></th:block>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- End Price -->
+
+                </div>
+            </div>
+            <div class="col-sm-8 order-sm-12 order-1 g-px-0 g-px-15--md">
+                <span class="d-inline-block g-color-gray-dark-v5 g-font-size-13 mb-2 g-px-15 g-mb-5"
+                      th:text="${ad.getAd().getLocality().getName()}">
+                </span>
+                <!-- Carousel -->
+                <div id="carouselCus1" class="js-carousel g-pt-0 g-mb-10"
+                     data-infinite="true"
+                     data-fade="true"
+                     data-pagi-classes="u-carousel-indicators-v1 g-absolute-centered--x g-bottom-10 u-carousel-indicators--md-hide"
+                     data-arrows-classes="u-arrow-v1 d-none d-sm-block g-brd-around g-brd-white g-absolute-centered--y g-width-45 g-height-45 g-font-size-14 g-color-white g-color-primary--hover rounded-circle"
+                     data-arrow-left-classes="fa fa-angle-left g-left-40"
+                     data-arrow-right-classes="fa fa-angle-right g-right-40"
+                     data-nav-for="#carouselCus2">
+                    <div class="js-slide g-bg-cover g-bg-black-opacity-0_1--after" th:each="nxtImage : ${ad.getAd().getImages()}">
+                        <img class="img-fluid w-100" th:src="@{${nxtImage.getUrlForMediumSize()}}" alt="Image Description">
+                    </div>
+<!--                    <div class="js-slide g-bg-cover g-bg-black-opacity-0_1&#45;&#45;after">-->
+<!--                        <img class="img-fluid w-100" th:src="@{/unify/assets/img-temp/650x750/img2.jpg}" alt="Image Description">-->
+<!--                    </div>-->
+<!--                    <div class="js-slide g-bg-cover g-bg-black-opacity-0_1&#45;&#45;after">-->
+<!--                        <img class="img-fluid w-100" th:src="@{/unify/assets/img-temp/650x750/img3.jpg}" alt="Image Description">-->
+<!--                    </div>-->
+                </div>
+
+                <div id="carouselCus2" class="js-carousel text-center u-carousel-v3 g-mx-minus-5 d-none d-sm-block"
+                     th:if="${ad.getAd().getImages().size() > 1}"
+                     data-infinite="true"
+                     data-center-mode="true"
+                     data-slides-show="8"
+                     data-is-thumbs="true"
+                     data-nav-for="#carouselCus1">
+                    <div class="js-slide g-cursor-pointer g-px-5" th:each="nxtImage : ${ad.getAd().getImages()}">
+                        <img class="img-fluid" th:src="@{${nxtImage.getUrlForSmallSize()}}" alt="Image Description">
+                    </div>
+
+<!--                    <div class="js-slide g-cursor-pointer g-px-5">-->
+<!--                        <img class="img-fluid" th:src="@{/unify/assets/img-temp/250x170/img2.jpg}" alt="Image Description">-->
+<!--                    </div>-->
+
+<!--                    <div class="js-slide g-cursor-pointer g-px-5">-->
+<!--                        <img class="img-fluid" th:src="@{/unify/assets/img-temp/250x170/img3.jpg}" alt="Image Description">-->
+<!--                    </div>-->
+
+<!--                    <div class="js-slide g-cursor-pointer g-px-5">-->
+<!--                        <img class="img-fluid" th:src="@{/unify/assets/img-temp/250x170/img1.jpg}" alt="Image Description">-->
+<!--                    </div>-->
+
+<!--                    <div class="js-slide g-cursor-pointer g-px-5">-->
+<!--                        <img class="img-fluid" th:src="@{/unify/assets/img-temp/250x170/img2.jpg}" alt="Image Description">-->
+<!--                    </div>-->
+
+<!--                    <div class="js-slide g-cursor-pointer g-px-5">-->
+<!--                        <img class="img-fluid" th:src="@{/unify/assets/img-temp/250x170/img3.jpg}" alt="Image Description">-->
+<!--                    </div>-->
+                </div>
+                <!-- End Carousel -->
+            </div>
+
+        </div>
+    </div>
+    <!-- End Product Description -->
+
+    <!-- Description -->
+    <div class="container">
+        <div class="g-brd-y g-brd-gray-light-v4 g-pt-20 g-pb-20">
+
+            <div class="row justify-content-end">
+                <div class="col-sm-8 g-mb-30">
+                    <p th:text="${ad.getAd().getDescription()}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Description -->
+
+    <a class="js-go-to u-go-to-v2" href="#"
+       data-type="fixed"
+       data-position='{
+           "bottom": 15,
+           "right": 15
+         }'
+       data-offset-top="400"
+       data-compensation="#js-header"
+       data-show-effect="zoomIn">
+        <i class="hs-icon hs-icon-arrow-top"></i>
+    </a>
+</main>
+
+<div class="u-outer-spaces-helper"></div>
+
+<!-- JS Global Compulsory -->
+<script th:src="@{/unify/assets/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/jquery-migrate/jquery-migrate.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/popper.js/popper.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/bootstrap/bootstrap.min.js}"></script>
+
+<!-- JS Implementing Plugins -->
+<script th:src="@{/unify/assets/vendor/slick-carousel/slick/slick.js}"></script>
+<script th:src="@{/unify/assets/vendor/hs-megamenu/src/hs.megamenu.js}"></script>
+<script th:src="@{/unify/assets/vendor/jquery.countdown.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.concat.min.js}"></script>
+
+<!-- JS Unify -->
+<script th:src="@{/unify/assets/js/hs.core.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.header.js}"></script>
+<script th:src="@{/unify/assets/js/helpers/hs.hamburgers.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.dropdown.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.scrollbar.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.countdown.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.carousel.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.tabs.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.count-qty.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.go-to.js}"></script>
+<script th:src="@{/unify/assets/js/helpers/hs.rating.js}"></script>
+
+<!-- JS Customization -->
+<script th:src="@{/unify/assets/js/custom.js}"></script>
+
+<!-- JS Plugins Init. -->
+<script>
+    function goHistoryBack() {
+        window.history.back();
+    }
+
+    $(document).on('ready', function () {
+        // initialization of carousel
+        $.HSCore.components.HSCarousel.init('.js-carousel');
+
+        // initialization of header
+        $.HSCore.components.HSHeader.init($('#js-header'));
+        $.HSCore.helpers.HSHamburgers.init('.hamburger');
+
+        // initialization of HSMegaMenu plugin
+        $('.js-mega-menu').HSMegaMenu({
+            event: 'hover',
+            pageContainer: $('.container'),
+            breakpoint: 991
+        });
+
+        // initialization of HSDropdown component
+        $.HSCore.components.HSDropdown.init($('[data-dropdown-target]'), {
+            afterOpen: function () {
+                $(this).find('input[type="search"]').focus();
+            }
+        });
+
+        // initialization of go to
+        $.HSCore.components.HSGoTo.init('.js-go-to');
+
+        // initialization of HSScrollBar component
+        $.HSCore.components.HSScrollBar.init($('.js-scrollbar'));
+
+        // initialization of quantity counter
+        $.HSCore.components.HSCountQty.init('.js-quantity');
+
+        // initialization of tabs
+        $.HSCore.components.HSTabs.init('[role="tablist"]');
+
+        // initialization of rating
+        $.HSCore.helpers.HSRating.init();
+    });
+
+    $(window).on('resize', function () {
+        setTimeout(function () {
+            $.HSCore.components.HSTabs.init('[role="tablist"]');
+        }, 200);
+    });
+</script>
+</body>
+</html>

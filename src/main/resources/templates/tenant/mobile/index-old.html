@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Title -->
+    <title>E-commerce Home Page 3 | Unify - Responsive Website Template</title>
+
+    <!-- Required Meta Tags Always Come First -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" th:href="@{/favicon.ico}">
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,900">
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/bootstrap/bootstrap.min.css}">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/icon-awesome/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/icon-line-pro/style.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/slick-carousel/slick/slick.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/icon-hs/style.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/icon-line/css/simple-line-icons.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/icon-material/material-icons.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/animate.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/hamburgers/hamburgers.min.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/hs-megamenu/src/hs.megamenu.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.min.css}">
+
+    <!-- Revolution Slider -->
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/revolution-slider/revolution/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/revolution-slider/revolution/css/settings.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/revolution-slider/revolution/css/layers.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/revolution-slider/revolution/css/navigation.css}">
+
+    <!-- CSS Unify Theme -->
+    <link rel="stylesheet" th:href="@{/unify/e-commerce/assets/css/styles.e-commerce.css}">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" th:href="@{/unify/assets/css/custom.css}">
+<!--    <link rel="stylesheet" th:href="@{/css/app.min.css}">-->
+</head>
+
+<body>
+<main>
+
+    <th:block th:include="~{header :: header-mobile}"></th:block>
+
+    <!-- Features -->
+    <div class="g-brd-bottom g-brd-gray-light-v4">
+        <div class="container g-py-30">
+            <h4 th:text="#{index.localities}">Места отдыха</h4>
+            <div class="scrolling-wrapper-flexbox">
+                <div class=" mx-auto g-py-15 scrolling-wrapper-flexbox-item" th:each="locality : ${localities}">
+                    <a th:href="@{/search(q = ':localityId:' + ${locality.getId()})}" class="default-text">
+                        <div class="g-px-20--lg g-px-10">
+                            <img class="img-fluid img-thumbnail g-brd-gray-light-v2 rounded-circle" th:src="@{${locality.getImageUrl()}}" th:alt="${locality.name}">
+                            <div class="text-center g-pt-5">
+                                <span class="mb-0 mt-1" th:text="${locality.name}">Бурабай</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- End Features -->
+
+    <!-- Categories -->
+    <div class="container g-pt-40 g-pb-70">
+        <div class="row">
+            <div class="col-12">
+                <h4 th:text="#{index.ads.hot}"></h4>
+
+                <div class="g-brd-bottom g-brd-gray-light-v4" th:each="hotAd : ${hotAds}">
+                    <div class="g-pt-20 g-pb-15">
+                        <div class="row">
+
+                            <div class="col-12 g-mb-10 d-block d-sm-none g-px-0">
+                                    <span class="d-inline-block g-color-gray-dark-v5 g-font-size-15 mb-2 g-px-15 g-mb-5" th:text="${hotAd.localityName}"></span>
+                                <figure class="g-pos-rel">
+                                    <a th:href="@{/ads/{id}(id = ${hotAd.getId()})}">
+                                        <img class="img-fluid" th:src="@{${hotAd.getImageUrlForMediumSize()}}" alt="Image Description">
+                                    </a>
+                                </figure>
+                            </div>
+
+                        </div>
+
+                        <div class="row d-block d-sm-none">
+                            <div class="col">
+                                <h4 class="h5 g-color-black mb-0 mt-1">
+                                    <a th:href="@{/ads/{id}(id = ${hotAd.getId()})}" class="u-link-v5 g-color-black g-color-primary--hover"
+                                       th:text="${hotAd.getPrices()}">
+                                    </a>
+                                </h4>
+                                <h4 class="h5 g-color-black mb-0 mt-1 g-font-weight-400">
+                                    <a class="u-link-v5 g-color-black g-color-primary--hover" th:href="@{/ads/{id}(id = ${hotAd.getId()})}"
+                                       th:text="${hotAd.getHeader()}">
+                                    </a>
+                                </h4>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- End Categories -->
+
+
+    <nav class="mobile-bottom-nav">
+        <div class="mobile-bottom-nav__item mobile-bottom-nav__item--active">
+            <a th:href="@{/}">
+                <div class="mobile-bottom-nav__item-content">
+                    <i class="material-icons">home</i>
+                    <span th:text="#{nav.mobile.home}"></span>
+                </div>
+            </a>
+        </div>
+        <div class="mobile-bottom-nav__item">
+            <a th:href="@{/search}">
+                <div class="mobile-bottom-nav__item-content">
+                    <i class="material-icons">search</i>
+                    <span th:text="#{nav.mobile.search}"></span>
+                </div>
+            </a>
+        </div>
+        <div class="mobile-bottom-nav__item">
+            <a th:href="@{/my/ads/create/choose-housing-type}">
+                <div class="mobile-bottom-nav__item-content">
+                    <i class="material-icons">add_box</i>
+                    <span th:text="#{nav.mobile.create.ad}"></span>
+                </div>
+            </a>
+        </div>
+
+        <div class="mobile-bottom-nav__item">
+            <a th:href="@{/cabinet}">
+                <div class="mobile-bottom-nav__item-content">
+                    <i class="material-icons">person</i>
+                    <span th:text="#{nav.mobile.cabinet}"></span>
+                </div>
+            </a>
+        </div>
+    </nav>
+
+    <a class="js-go-to u-go-to-v2" href="#"
+       data-type="fixed"
+       data-position='{
+           "bottom": 55,
+           "right": 15
+         }'
+       data-offset-top="400"
+       data-compensation="#js-header"
+       data-show-effect="zoomIn">
+        <i class="hs-icon hs-icon-arrow-top"></i>
+    </a>
+</main>
+
+<div class="u-outer-spaces-helper"></div>
+
+<!-- JS Global Compulsory -->
+<script th:src="@{/unify/assets/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/jquery-migrate/jquery-migrate.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/popper.js/popper.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/bootstrap/bootstrap.min.js}"></script>
+
+<!-- JS Implementing Plugins -->
+<script th:src="@{/unify/assets/vendor/jquery.countdown.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/slick-carousel/slick/slick.js}"></script>
+<script th:src="@{/unify/assets/vendor/hs-megamenu/src/hs.megamenu.js}"></script>
+<script th:src="@{/unify/assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.concat.min.js}"></script>
+
+<!-- JS Master Slider -->
+<script th:src="@{/unify/assets/vendor/master-slider/source/assets/js/masterslider.min.js}"></script>
+
+<!-- JS Unify -->
+<script th:src="@{/unify/assets/js/hs.core.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.header.js}"></script>
+<script th:src="@{/unify/assets/js/helpers/hs.hamburgers.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.dropdown.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.scrollbar.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.countdown.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.carousel.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.go-to.js}"></script>
+
+<!-- JS Revolution Slider -->
+<script th:src="@{/unify/assets/vendor/revolution-slider/revolution/js/jquery.themepunch.tools.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/revolution-slider/revolution/js/jquery.themepunch.revolution.min.js}"></script>
+
+<script th:src="@{/unify/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.actions.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.carousel.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.kenburn.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.layeranimation.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.migration.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.navigation.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.parallax.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.slideanims.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.video.min.js}"></script>
+
+<!-- JS Customization -->
+<script th:src="@{/unify/assets/js/custom.js}"></script>
+
+<!-- JS Plugins Init. -->
+<script>
+    $(document).on('ready', function () {
+        // initialization of carousel
+        $.HSCore.components.HSCarousel.init('[class*="js-carousel"]');
+
+        $('#carouselCus1').slick('setOption', 'responsive', [{
+            breakpoint: 1200,
+            settings: {
+                slidesToShow: 4
+            }
+        }, {
+            breakpoint: 992,
+            settings: {
+                slidesToShow: 3
+            }
+        }, {
+            breakpoint: 768,
+            settings: {
+                slidesToShow: 2
+            }
+        }], true);
+    });
+
+    // initialization of header
+    $.HSCore.components.HSHeader.init($('#js-header'));
+    $.HSCore.helpers.HSHamburgers.init('.hamburger');
+
+    // initialization of HSMegaMenu component
+    $('.js-mega-menu').HSMegaMenu({
+        event: 'hover',
+        pageContainer: $('.container'),
+        breakpoint: 991
+    });
+
+    // initialization of HSDropdown component
+    $.HSCore.components.HSDropdown.init($('[data-dropdown-target]'), {
+        afterOpen: function () {
+            $(this).find('input[type="search"]').focus();
+        }
+    });
+
+    // initialization of go to
+    $.HSCore.components.HSGoTo.init('.js-go-to');
+
+    // initialization of countdowns
+    var countdowns = $.HSCore.components.HSCountdown.init('.js-countdown', {
+        yearsElSelector: '.js-cd-years',
+        monthElSelector: '.js-cd-month',
+        daysElSelector: '.js-cd-days',
+        hoursElSelector: '.js-cd-hours',
+        minutesElSelector: '.js-cd-minutes',
+        secondsElSelector: '.js-cd-seconds'
+    });
+
+    $(window).on('load', function() {
+        // initialization of HSScrollBar component
+        $.HSCore.components.HSScrollBar.init($('.js-scrollbar'));
+    });
+
+</script>
+</body>
+</html>

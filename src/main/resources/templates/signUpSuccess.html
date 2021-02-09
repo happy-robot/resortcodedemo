@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Title -->
+    <title>E-commerce Signup Page | Unify - Responsive Website Template</title>
+
+    <!-- Required Meta Tags Always Come First -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" th:href="@{favicon.ico}">
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,900">
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/bootstrap/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/icon-material/material-icons.css}">
+
+
+    <!-- CSS Unify Theme -->
+    <link rel="stylesheet" th:href="@{/unify/e-commerce/assets/css/styles.e-commerce.css}">
+
+    <!-- CSS Customization -->
+    <!--    <link rel="stylesheet" th:href="@{/unify/assets/css/custom.css}">-->
+    <link rel="stylesheet" th:href="@{/css/app.min.css}">
+
+</head>
+
+<body>
+<main>
+
+
+    <!-- Signup -->
+    <section class="container g-pt-20 g-pb-20">
+        <div class="text-center g-mb-15 g-mt-20">
+            <h2 class="h4">
+                <a th:href="@{/}">
+                    <span class="u-icon-v1 g-mb-10">
+                      <i class="material-icons">chevron_left</i>
+                    </span>
+                    localhost</a>
+            </h2>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-5 order-lg-2 g-mb-80">
+                <div class="g-brd-around--md g-brd-gray-light-v3 g-bg-white rounded g-px-30--md g-px-10 g-py-50--md g-pt-20">
+                    <header class="text-center mb-4">
+                        <h1 class="h4 g-color-black g-font-weight-400" th:text="#{signup.success.header}">Create New Account</h1>
+                    </header>
+
+                    <a th:href="@{/cabinet}" class="btn btn-block u-btn-primary g-font-size-18 g-px-25 g-py-7 g-mt-45 g-font-weight-500"
+                       th:text="#{login.do}">Login</a>
+                    <!-- End Form -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Signup -->
+
+
+</main>
+
+<!-- JS Global Compulsory -->
+<script th:src="@{/unify/assets/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/jquery-migrate/jquery-migrate.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/bootstrap/bootstrap.min.js}"></script>
+
+
+<!-- JS Customization -->
+<script th:src="@{/unify/assets/js/custom.js}"></script>
+
+
+</body>
+</html>

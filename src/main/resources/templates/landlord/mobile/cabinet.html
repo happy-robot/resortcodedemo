@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Title -->
+    <title>Unify - Responsive Website Template</title>
+
+    <!-- Required Meta Tags Always Come First -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" th:href="@{/favicon.ico}">
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,900">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/icon-line/css/simple-line-icons.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/icon-material/material-icons.css}">
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/bootstrap/bootstrap.min.css}">
+    <!-- CSS Unify Theme -->
+    <link rel="stylesheet" th:href="@{/unify/e-commerce/assets/css/styles.e-commerce.css}">
+
+    <!-- CSS Customization -->
+<!--    <link rel="stylesheet" th:href="@{/unify/assets/css/custom.css}">-->
+    <link rel="stylesheet" th:href="@{/css/app.min.css}">
+
+</head>
+
+<body>
+<main>
+
+    <div class="container g-py-30 g-py-100--md">
+
+        <div class="row">
+            <div class="col-12">
+                <h5 class="h4 mb-3 g-font-weight-400 g-mb-5" th:text="#{cabinet.header}">Ваши объявления</h5>
+            </div>
+        </div>
+
+        <div class="row g-mt-20">
+            <div class="col-12">
+                <h5 class="h5 mb-3 g-font-weight-400 g-mb-5" th:text="#{cabinet.my.ads}">Ваши объявления</h5>
+            </div>
+        </div>
+
+        <div class="row g-py-5 g-my-5">
+            <a th:href="@{/my/ads}" class="g-width-100x">
+                <div class="col category">
+                    <div>
+                        <span class="align-middle g-ml-10" th:text="#{cabinet.my.ads.active}">Активные</span>
+                    </div>
+                    <div>
+                        <span th:if="${adsCountsByStatus.getPublished() > 0}" class="u-label g-rounded-3 label-1" th:text="${adsCountsByStatus.getPublished()}"></span>
+                        <svg viewBox="0 0 24 24" width="1em" height="1em">
+                            <path fill="currentColor" fill-rule="evenodd"
+                                  d="M7 2v1.414l1.271 1.27L15.586 12l-7.315 7.315L7 20.585V22h1.414l1.27-1.271L17 13.414l1-1v-.827l-3.942-3.942v-.001L9.686 3.271 8.413 2z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <hr class="g-my-0">
+
+        <div class="row g-py-5 g-my-5">
+            <a th:href="@{/my/ads(status='DRAFT')}" class="g-width-100x">
+                <div class="col category">
+                    <div>
+                        <span class="align-middle g-ml-10" th:text="#{cabinet.my.ads.nonactive}">Неактивные</span>
+                    </div>
+                    <div>
+                        <span th:if="${adsCountsByStatus.getDraft() > 0}" class="u-label g-rounded-3 label-1" th:text="${adsCountsByStatus.getDraft()}"></span>
+                        <svg viewBox="0 0 24 24" width="1em" height="1em">
+                            <path fill="currentColor" fill-rule="evenodd"
+                                  d="M7 2v1.414l1.271 1.27L15.586 12l-7.315 7.315L7 20.585V22h1.414l1.27-1.271L17 13.414l1-1v-.827l-3.942-3.942v-.001L9.686 3.271 8.413 2z"></path>
+                        </svg>
+                    </div>
+
+                </div>
+            </a>
+        </div>
+
+        <a th:href="@{/my/ads/create/choose-housing-type}" class="btn btn-block u-btn-primary g-font-size-18 g-px-25 g-py-7 g-mt-15 g-font-weight-500"
+           th:text="#{cabinet.cta.create.ad}">Login</a>
+
+        <div class="g-mt-50">
+            <a href="/logout" class="" th:text="#{logout.do}"></a>
+        </div>
+
+    </div>
+
+    <nav class="mobile-bottom-nav">
+        <div class="mobile-bottom-nav__item">
+            <a th:href="@{/}">
+                <div class="mobile-bottom-nav__item-content">
+                    <i class="material-icons">home</i>
+                    <span th:text="#{nav.mobile.home}"></span>
+                </div>
+            </a>
+        </div>
+        <div class="mobile-bottom-nav__item">
+            <a th:href="@{/search}">
+                <div class="mobile-bottom-nav__item-content">
+                    <i class="material-icons">search</i>
+                    <span th:text="#{nav.mobile.search}"></span>
+                </div>
+            </a>
+        </div>
+        <div class="mobile-bottom-nav__item">
+            <a th:href="@{/my/ads/create/choose-housing-type}">
+                <div class="mobile-bottom-nav__item-content">
+                    <i class="material-icons">add_box</i>
+                    <span th:text="#{nav.mobile.create.ad}"></span>
+                </div>
+            </a>
+        </div>
+
+        <div class="mobile-bottom-nav__item mobile-bottom-nav__item--active">
+            <a th:href="@{/cabinet}">
+                <div class="mobile-bottom-nav__item-content">
+                    <i class="material-icons">person</i>
+                    <span th:text="#{nav.mobile.cabinet}"></span>
+                </div>
+            </a>
+        </div>
+    </nav>
+
+</main>
+
+<!-- JS Plugins Init. -->
+<script>
+    function goHistoryBack() {
+        window.history.back();
+    }
+</script>
+
+
+</body>
+</html>

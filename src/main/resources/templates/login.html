@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Title -->
+    <title>E-commerce Login Page | Unify - Responsive Website Template</title>
+
+    <!-- Required Meta Tags Always Come First -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" th:href="@{favicon.ico}">
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,900">
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/bootstrap/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/icon-line/css/simple-line-icons.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/icon-material/material-icons.css}">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/icon-awesome/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/icon-line-pro/style.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/icon-hs/style.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/animate.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/hamburgers/hamburgers.min.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/hs-megamenu/src/hs.megamenu.css}">
+    <link rel="stylesheet" th:href="@{/unify/assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.min.css}">
+
+    <!-- CSS Unify Theme -->
+    <link rel="stylesheet" th:href="@{/unify/e-commerce/assets/css/styles.e-commerce.css}">
+
+    <!-- CSS Customization -->
+<!--    <link rel="stylesheet" th:href="@{/unify/assets/css/custom.css}">-->
+    <link rel="stylesheet" th:href="@{/css/app.min.css}">
+</head>
+
+<body>
+<main>
+
+    <!-- Login -->
+    <section class="container g-pt-20 g-pb-20">
+        <div class="text-center g-mb-15 g-mt-20">
+            <h2 class="h4">
+                <a th:href="@{/}">
+                    <span class="u-icon-v1 g-mb-10">
+                      <i class="material-icons">chevron_left</i>
+                    </span>
+                    localhost</a>
+            </h2>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5 order-lg-2 g-mb-10">
+                <div class="g-brd-around--md g-brd-gray-light-v3 g-bg-white rounded g-px-30--md g-px-10 g-py-50--md g-py-20 mb-4">
+                    <header class="text-center mb-4">
+                        <h1 class="h4 g-color-black g-font-weight-400" th:text="#{login.form.header}">Login to Your Account</h1>
+                    </header>
+
+                    <!-- Form -->
+                    <form class="g-py-15" role="form" method="POST" th:action="@{/login}">
+                        <div class="mb-4">
+                            <div class="input-group g-rounded-left-3">
+                                <input class="form-control g-font-size-18 g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-0 g-rounded-right-3 g-py-15 g-px-15"
+                                       type="text" name="username" th:placeholder="#{signup.form.phone.placeholder}">
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="input-group g-rounded-left-3 mb-4">
+                                <input class="form-control g-font-size-18 g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 g-rounded-left-0 g-rounded-right-3 g-py-15 g-px-15"
+                                       type="password" name="password" th:placeholder="#{login.form.password.placeholder}">
+                            </div>
+                        </div>
+
+                        <button class="btn btn-block u-btn-primary g-font-size-18 g-py-12 g-px-25"
+                                type="submit" th:text="#{login.form.submit}">Login</button>
+
+                        <div class="row justify-content-between mt-3 mb-5">
+                            <div class="col align-self-center text-center">
+                                <a class="g-font-size-16" th:href="@{/password-recovery/username}" th:text="#{login.form.forgot.password}">Forgot password?</a>
+                            </div>
+                        </div>
+
+                    </form>
+                    <!-- End Form -->
+                    <a class="btn btn-block u-btn-outline-primary g-font-size-18 g-py-12 g-px-25"
+                       th:href="@{/sign-up}" th:text="#{login.dont.have.account.signup}">signup</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- End Login -->
+
+
+    <a class="js-go-to u-go-to-v2" href="#"
+       data-type="fixed"
+       data-position='{
+           "bottom": 15,
+           "right": 15
+         }'
+       data-offset-top="400"
+       data-compensation="#js-header"
+       data-show-effect="zoomIn">
+        <i class="hs-icon hs-icon-arrow-top"></i>
+    </a>
+</main>
+
+<div class="u-outer-spaces-helper"></div>
+
+<!-- JS Global Compulsory -->
+<script th:src="@{/unify/assets/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/jquery-migrate/jquery-migrate.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/popper.js/popper.min.js}"></script>
+<script th:src="@{/unify/assets/vendor/bootstrap/bootstrap.min.js}"></script>
+
+<!-- JS Implementing Plugins -->
+<script th:src="@{/unify/assets/vendor/hs-megamenu/src/hs.megamenu.js}"></script>
+<script th:src="@{/unify/assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.concat.min.js}"></script>
+
+<!-- JS Unify -->
+<script th:src="@{/unify/assets/js/hs.core.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.header.js}"></script>
+<script th:src="@{/unify/assets/js/helpers/hs.hamburgers.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.dropdown.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.scrollbar.js}"></script>
+<script th:src="@{/unify/assets/js/components/hs.go-to.js}"></script>
+
+<!-- JS Customization -->
+<script th:src="@{/unify/assets/js/custom.js}"></script>
+
+<!-- JS Plugins Init. -->
+<script>
+    $(document).on('ready', function () {
+        // initialization of header
+        $.HSCore.components.HSHeader.init($('#js-header'));
+        $.HSCore.helpers.HSHamburgers.init('.hamburger');
+
+        // initialization of HSMegaMenu component
+        $('.js-mega-menu').HSMegaMenu({
+            event: 'hover',
+            pageContainer: $('.container'),
+            breakpoint: 991
+        });
+
+        // initialization of HSDropdown component
+        $.HSCore.components.HSDropdown.init($('[data-dropdown-target]'), {
+            afterOpen: function () {
+                $(this).find('input[type="search"]').focus();
+            }
+        });
+
+        // initialization of HSScrollBar component
+        $.HSCore.components.HSScrollBar.init($('.js-scrollbar'));
+
+        // initialization of go to
+        $.HSCore.components.HSGoTo.init('.js-go-to');
+    });
+</script>
+</body>
+</html>

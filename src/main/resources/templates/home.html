@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <th:block th:include="~{general :: meta}"></th:block>
+    <th:block th:include="~{general :: headerfiles}"></th:block>
+
+</head>
+<body class="ecommerce">
+
+    <div th:insert="~{header :: headerindex}"></div>
+
+    <div class="main">
+
+        <div class="search-block parallaxBg" style="background-position: 50% -30px;background-size:     cover;">
+            <div class="container index">
+                <div class="row margin-bottom-5">
+                    <div class="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">
+
+                        <h1>Забронируй отдых в Боровом</h1>
+
+                        <form class="form-horizontal" role="form" autocomplete="off" th:object="${simpleFaceteFilter}" th:modelAttribute="simpleFaceteFilter" th:action="@{/home/ads/search}" method="GET">
+                            <div class="col-lg-12">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                    <div class="form-group has-feedback">
+                                        <input type="text" class="form-control form-control-inline date-picker input-lg text-center" th:field="*{arriveDate}"
+                                               id="arriveDate" th:placeholder="#{views.common.arrival}" style="font-size:large;">
+                                        <label class="form-control-feedback" for="arriveDate">
+                                            <i class="fa fa-calendar"></i>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                    <div class="form-group has-feedback">
+                                        <input type="text" class="form-control form-control-inline date-picker input-lg text-center" th:field="*{departDate}"
+                                               id="departDate" th:placeholder="#{views.common.departure}"  style="font-size:large;">
+                                        <label class="form-control-feedback" for="departDate">
+                                            <i class="fa fa-calendar"></i>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="clearfix visible-xs"></div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-8">
+                                    <div class="form-group">
+                                        <select class="form-control form-control-inline input-lg text-center" th:field="*{housingType}"  style="font-size:large;">
+                                            <option th:value="''" th:text="#{views.index.any.housing}"></option>
+                                            <option th:each="housingType : ${housingTypes}" th:value="${housingType}" th:text="#{'plural.' + ${housingType}}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4" style="text-align:center;">
+                                    <div class="">
+                                        <button type="submit" class="btn btn-primary input-lg btn-block"  style="font-size:20px;font-weight: bold;" th:text="#{views.common.find}"></button>
+                                    </div>
+                                </div>
+                                <div class="clearfix visible-xs"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="about-section section-first">
+            <div class="about-image bg-grey">
+                <div class="container">
+                    <div class="title-v1">
+                        <h1>Аренда курортного жилья</h1>
+                        <p>У нас Вы найдете жилье в аренду в Боровом для Вашего отдыха или мероприятия. Жилье можно посмотреть в нашем каталоге</p>
+                    </div>
+                    <div class="img-center">
+                    </div>
+                </div>
+            </div>
+
+            <div class="container content-md">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                        <form role="form" th:object="${simpleFaceteFilter}" th:modelAttribute="simpleFaceteFilter" th:action="@{/home/ads/search}" method="GET">
+                            <input type="hidden" name="housingType" value="COTTAGE" />
+                            <button type="submit" class="button-link like-link"><h2 th:text="#{views.common.cottages}"></h2></button>
+                        </form>
+                        <div class="owl-carousel owl-carousel4">
+                            <div th:each="cottage : ${cottages}">
+                                <div class="product-item product-item-index">
+                                    <div class="pi-img-wrapper">
+                                        <a th:href="@{/ads/{id}(id = ${cottage.getId()})}">
+                                            <!--todo alt-->
+                                            <img th:src="@{${cottage.getFirstImage().getUrlForMediumSize()}}" class="img-responsive"
+                                                 style="height: 188px; width: auto;margin-left: auto;margin-right: auto;">
+                                        </a>
+                                    </div>
+                                    <div class="block-grid-v2-info rounded-bottom">
+                                        <h5><a th:href="@{/ads/{id}(id = ${cottage.getId()})}">
+                                            <span th:text="${cottage.getRoomNum()}"></span>-<span th:text="#{views.housing.view.room.num.short}"></span>
+                                            <span th:text="#{models.housing.floor}"></span>
+                                            <span th:text="${cottage.getFloor()}"></span>/<span th:text="${cottage.getFloorNum()}"></span>,
+                                            <span th:text="${cottage.getSleepNum()}"></span>-<span th:text="#{views.housing.view.sleeps.num}"></span>
+                                        </a></h5>
+                                        <span th:text="#{views.common.price}"></span>: <span th:text="#{views.common.prepayment.agreement}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+
+                        <form role="form" th:object="${simpleFaceteFilter}" th:modelAttribute="simpleFaceteFilter" th:action="@{/home/ads/search}" method="GET">
+                            <input type="hidden" name="housingType" value="FLAT" />
+                            <button type="submit" class="button-link like-link"><h2 th:text="#{views.common.flats}"></h2></button>
+                        </form>
+                        <div class="owl-carousel owl-carousel4">
+                            <div th:each="flat : ${flats}">
+                                <div class="product-item product-item-index">
+                                    <div class="pi-img-wrapper">
+                                        <a th:href="@{/ads/{id}(id = ${flat.getId()})}">
+                                            <!--todo alt-->
+                                            <img th:src="@{${flat.getFirstImage().getUrlForMediumSize()}}" class="img-responsive"
+                                                 style="height: 188px; width: auto;margin-left: auto;margin-right: auto;">
+                                        </a>
+                                    </div>
+                                    <div class="block-grid-v2-info rounded-bottom">
+                                        <h5><a th:href="@{/ads/{id}(id = ${flat.getId()})}">
+                                            <span th:text="${flat.getRoomNum()}"></span>-<span th:text="#{views.housing.view.room.num.short}"></span>
+                                            <span th:text="#{models.housing.floor}"></span>
+                                            <span th:text="${flat.getFloor()}"></span>/<span th:text="${flat.getFloorNum()}"></span>,
+                                            <span th:text="${flat.getSleepNum()}"></span>-<span th:text="#{views.housing.view.sleeps.num}"></span>
+                                        </a></h5>
+                                        <span th:text="#{views.common.price}"></span>: <span th:text="#{views.common.prepayment.agreement}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+
+                        <form role="form" th:object="${simpleFaceteFilter}" th:modelAttribute="simpleFaceteFilter" th:action="@{/home/ads/search}" method="GET">
+                            <input type="hidden" name="housingType" value="HOUSE" />
+                            <button type="submit" class="button-link like-link"><h2 th:text="#{views.common.houses}"></h2></button>
+                        </form>
+                        <div class="owl-carousel owl-carousel4">
+                            <div th:each="house : ${houses}">
+                                <div class="product-item product-item-index">
+                                    <div class="pi-img-wrapper">
+                                        <a th:href="@{/ads/{id}(id = ${house.getId()})}">
+                                            <!--todo alt-->
+                                            <img th:src="@{${house.getFirstImage().getUrlForMediumSize()}}" class="img-responsive"
+                                                 style="height: 188px; width: auto;margin-left: auto;margin-right: auto;">
+                                        </a>
+                                    </div>
+                                    <div class="block-grid-v2-info rounded-bottom">
+                                        <h5><a href="#">
+                                            <span th:text="${house.getRoomNum()}"></span>-<span th:text="#{views.housing.view.room.num.short}"></span>
+                                            <span th:text="#{models.housing.floor}"></span>
+                                            <span th:text="${house.getFloor()}"></span>/<span th:text="${house.getFloorNum()}"></span>,
+                                            <span th:text="${house.getSleepNum()}"></span>-<span th:text="#{views.housing.view.sleeps.num}"></span>
+                                        </a></h5>
+                                        <span th:text="#{views.common.price}"></span>: <span th:text="#{views.common.prepayment.agreement}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <div th:insert="~{footer :: footer}"></div>
+
+    <th:block th:include="~{general :: footerfiles}"></th:block>
+
+
+
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            var today = new Date();
+            var previousDates = [];
+            for(var i = today.getDate(); i >= 1; i--){
+                previousDates.push(new Date(today.getFullYear(), today.getMonth(), i));
+            }
+            $('#arriveDate').datepicker({
+                format: "dd.mm.yyyy",
+                weekStart: 1,
+                language:'ru',
+                datesDisabled: previousDates
+            });
+
+            $('#departDate').datepicker({
+                format: "dd.mm.yyyy",
+                weekStart: 1,
+                language:'ru',
+                datesDisabled: previousDates.concat(today)
+            });
+            Layout.init();
+            Layout.initOWL();
+            LayersliderInit.initLayerSlider();
+            Layout.initImageZoom();
+            Layout.initTouchspin();
+            Layout.initTwitter();
+        });
+    </script>
+    <!-- END PAGE LEVEL JAVASCRIPTS -->
+
+    <div th:insert="~{googleAnalytics :: googleAnalytics}"></div>
+
+</body>
+</html>

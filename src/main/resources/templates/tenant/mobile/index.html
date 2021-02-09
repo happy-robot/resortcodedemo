@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Title -->
+    <title>E-commerce Home Page 3 | Unify - Responsive Website Template</title>
+
+    <!-- Required Meta Tags Always Come First -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" th:href="@{/favicon.ico}">
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,900">
+
+    <link rel="stylesheet" th:href="@{/assets/css/app.min.css}">
+<!--    <link rel="stylesheet" th:href="@{/assets/css/vendor.min.css}">-->
+
+</head>
+<body>
+
+<main class="mobile">
+
+    <!-- Header -->
+    <header id="js-header" class="u-header u-header--static u-header--show-hide u-header--change-appearance" data-header-fix-moment="500" data-header-fix-effect="slide">
+        <div class="u-header__section u-header__section--light g-bg-white g-transition-0_3 g-py-10" data-header-fix-moment-exclude="g-bg-white g-py-10" data-header-fix-moment-classes="g-bg-white-opacity-0_7 u-shadow-v18 g-py-0">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container">
+                    <!-- Responsive Toggle Button -->
+                    <button class="navbar-toggler navbar-toggler-right btn g-line-height-1 g-brd-none g-pa-0 g-pos-abs g-top-3 g-right-0" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navBar" data-toggle="collapse" data-target="#navBar">
+              <span class="hamburger hamburger--slider">
+            <span class="hamburger-box">
+              <span class="hamburger-inner"></span>
+              </span>
+              </span>
+                    </button>
+                    <!-- End Responsive Toggle Button -->
+
+                    <!-- Logo -->
+                    <a th:href="@{/}" class="navbar-brand">
+                        <img th:src="@{/assets/img/logo/logo-1.png}" alt="Image Description">
+                    </a>
+                    <!-- End Logo -->
+
+                    <!-- Navigation -->
+                    <div class="js-navigation navbar-collapse align-items-center flex-sm-row u-main-nav--overlay-hidden g-bg-white g-pt-10 g-pt-5--lg" id="navBar" data-navigation-breakpoint="lg" data-navigation-position="left" data-navigation-init-classes="g-transition-0_5"
+                         data-navigation-init-body-classes="g-transition-0_5" data-navigation-overlay-classes="g-bg-black-opacity-0_8 g-transition-0_5">
+                        <div class="u-main-nav__list-wrapper ml-auto">
+                            <div class="u-main-nav__login">
+                                <span class="u-main-nav__login-icon icon-nav-user"></span>
+                                <span class="u-main-nav__login-text" th:text="#{nav.mobile.signup.signin}">Вход/Регистрация</span>
+                            </div>
+                            <ul class="navbar-nav g-font-weight-500 ml-auto">
+                                <li class="nav-item g-mx-20--lg" th:classappend="${selectedNavState == 'index'} ? active : ''">
+                                    <a th:href="@{/}" class="nav-link px-0" th:text="#{nav.mobile.home}">Home
+
+                                    </a>
+                                </li>
+                                <li class="nav-item g-mx-20--lg">
+                                    <a href="#" class="nav-link px-0" th:text="#{nav.mobile.housing.rent}">Features
+
+                                    </a>
+                                </li>
+                                <li class="nav-item g-ml-20--lg g-mr-0--lg">
+                                    <a href="#" class="nav-link px-0" th:text="#{nav.mobile.tours}">Shortcodes
+                                        <span class="sr-only">(current)</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="u-main-nav__cta-wrapper">
+                                <a href="#" class="btn btn-xl u-btn-primary u-main-nav__cta" th:text="#{nav.mobile.create.ad}">Primary</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Navigation -->
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- End Header -->
+
+    test
+
+
+    <a class="js-go-to u-go-to-v1" href="#" data-type="fixed" data-position='{
+     "bottom": 15,
+     "right": 15
+   }' data-offset-top="400" data-compensation="#js-header" data-show-effect="zoomIn">
+        <i class="hs-icon hs-icon-arrow-top"></i>
+    </a>
+</main>
+
+<script th:src="@{/assets/js/app.min.js}"></script>
+<script th:src="@{/assets/js/vendor.min.js}"></script>
+
+<script>
+    $(document).on('ready', function () {
+        // initialization of go to
+        $.HSCore.components.HSGoTo.init('.js-go-to');
+
+        // initialization of HSNavigation component
+        $.HSCore.components.HSNavigation.init($('.js-navigation'));
+    });
+
+    $(window).on('load', function () {
+        // initialization of header
+        $.HSCore.helpers.HSHamburgers.init('.hamburger');
+    });
+</script>
+</body>
+</html>
