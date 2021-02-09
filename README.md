@@ -29,7 +29,12 @@
 #### Микросервисы
 На текущий момент приложение состоит из двух сервисов, которые взаимодействуют через kafka (сервис пережатия загружаемых изображений и сервис с html, бизнес логикой).
 #### SOLID
-Соблюдаются правила SOLID. Код делится на "слои" - для бизнес-правил ([внутренний слой](https://github.com/happy-robot/resortcodedemo/tree/master/src/main/java/kz/kaps/resort/core) - сущности, варианты использования), адаптеры интерфейсов (внешний слой - [взаимодействие с БД](https://github.com/happy-robot/resortcodedemo/tree/master/src/main/java/kz/kaps/resort/dataproviders/database), [взаимодействие с вебом](https://github.com/happy-robot/resortcodedemo/tree/master/src/main/java/kz/kaps/resort/entrypoints), взаимодействие со сторонними сервисами - [обработка изображений](https://github.com/happy-robot/resortcodedemo/tree/master/src/main/java/kz/kaps/resort/dataproviders/image), [отправка SMS сообщений](https://github.com/happy-robot/resortcodedemo/tree/master/src/main/java/kz/kaps/resort/dataproviders/sms), [фреймворк](https://github.com/happy-robot/resortcodedemo/tree/master/src/main/java/kz/kaps/resort/configuration)). Бизнес-правила не зависят от деталей реализации - БД, системы обмена сообщениями, фреймворка, способа взаимодействия с пользователем. Например, можно заменить PostgreSQL на MongoDB без необходимости редактирования кода бизнес логики. 
+Соблюдаются правила SOLID. Код делится на "слои" - бизнес-логика, детали реализации. 
+
+[Бизнес-логика](https://github.com/happy-robot/resortcodedemo/tree/master/src/main/java/kz/kaps/resort/core): сущности, варианты использования.
+Детали реализации: [взаимодействие с БД](https://github.com/happy-robot/resortcodedemo/tree/master/src/main/java/kz/kaps/resort/dataproviders/database), [взаимодействие с вебом](https://github.com/happy-robot/resortcodedemo/tree/master/src/main/java/kz/kaps/resort/entrypoints), взаимодействие со сторонними сервисами - [обработка изображений](https://github.com/happy-robot/resortcodedemo/tree/master/src/main/java/kz/kaps/resort/dataproviders/image), [отправка SMS сообщений](https://github.com/happy-robot/resortcodedemo/tree/master/src/main/java/kz/kaps/resort/dataproviders/sms), [фреймворк](https://github.com/happy-robot/resortcodedemo/tree/master/src/main/java/kz/kaps/resort/configuration). 
+
+Бизнес-логика не зависят от деталей реализации. Например, можно заменить PostgreSQL на MongoDB без необходимости редактирования кода бизнес-логики. 
 
 
 ![Image of arch](https://github.com/happy-robot/resort/blob/master/docs/images/clean-architecture-diagram-1.png)
@@ -39,9 +44,9 @@
 #### Покрытие тестами
 Юнит тесты покрывают 72% бизнес логики арендадателя (jacoco) и 9% всего кода.
 #### SOAP
-При регистрации пользователя ему отправляется SMS с кодом регистрации. Взаимодействие с сервисом отправки SMS происходит через SOAP.
+При регистрации пользователя ему отправляется SMS с кодом подтверждения. Взаимодействие с сервисом отправки SMS происходит через SOAP.
 #### Frontend
-Для frontend-е ипользуются gulp (объединение и минификация css, js файлов, генерация спрайтов), sass, vue.js, jquery.
+Для frontend-а ипользуется gulp (объединение и минификация css, js файлов, генерация спрайтов), sass, vue.js, jquery.
 
 ---
 
