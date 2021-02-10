@@ -11,7 +11,7 @@ I am working on the side project on my own time. The repository contains only pa
 The project is a site for housing rental ads on Kazakhstan resorts.
 
 
-There is alse rough version of the site which was created in 2015 on play framework 1.4 ([vdomikah.kz](http://vdomikah.kz)). Nowadays I am rewriting it on the spring-boot (new version of the site is not published on the Internet).
+There is also rough version of the site which was created in 2015 on play framework 1.4 ([vdomikah.kz](http://vdomikah.kz)). Nowadays I am rewriting it on the spring-boot (new version of the site is not published on the Internet).
 
 
 ---
