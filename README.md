@@ -1,8 +1,6 @@
 - [На русском](#in-russian)
-- [In English](#in-english)
+- [In English](#apartment-rental-site)
 
-## In English
----
 ## Apartment rental site
 
 I am working on the side project on my own time. The repository contains only part of the code for demonstrating.
