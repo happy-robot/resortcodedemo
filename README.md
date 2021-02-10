@@ -35,7 +35,7 @@ There is alse rough version of the site which was created in 2015 on play framew
 
 ---
 
-### Technocal details
+### Technical details
 #### Microservices
 The app consists of two services communicating by the kafka.
 * image processing service
