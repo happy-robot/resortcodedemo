@@ -42,12 +42,12 @@
 * Детали реализации: [взаимодействие с БД](https://github.com/happy-robot/resortcodedemo/tree/master/src/main/java/kz/kaps/resort/dataproviders/database), [с вебом](https://github.com/happy-robot/resortcodedemo/tree/master/src/main/java/kz/kaps/resort/entrypoints) и со сторонними сервисами, [фреймворк](https://github.com/happy-robot/resortcodedemo/tree/master/src/main/java/kz/kaps/resort/configuration). 
 
 Бизнес-логика не зависит от деталей реализации. Например, можно заменить PostgreSQL на MongoDB без необходимости редактирования кода бизнес-логики. 
+Акторы: Есть три актора - арендадатель, арендатор, модератор. Не смешиваем код, используемый разными акторами.
 
 
 ![Image of arch](https://github.com/happy-robot/resortcodedemo/blob/master/docs/images/clean-architecture-diagram-1.png)
 ![Image of arch2](https://github.com/happy-robot/resortcodedemo/blob/master/docs/images/clean-architecture-diagram-2.png)
-#### Акторы
-Есть три актора - арендадатель, арендатор, модератор. Пишем для каждого актора отдельный код.
+
 #### Покрытие тестами
 Юнит тесты покрывают 72% бизнес логики арендадателя (jacoco) и 9% всего кода.
 #### SOAP
