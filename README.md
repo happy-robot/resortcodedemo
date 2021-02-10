@@ -41,7 +41,8 @@
 
 * Детали реализации: [взаимодействие с БД](https://github.com/happy-robot/resortcodedemo/tree/master/src/main/java/kz/kaps/resort/dataproviders/database), [с вебом](https://github.com/happy-robot/resortcodedemo/tree/master/src/main/java/kz/kaps/resort/entrypoints) и со сторонними сервисами, [фреймворк](https://github.com/happy-robot/resortcodedemo/tree/master/src/main/java/kz/kaps/resort/configuration). 
 
-Бизнес-логика не зависит от деталей реализации. Например, можно заменить PostgreSQL на MongoDB без необходимости редактирования кода бизнес-логики. 
+Бизнес-логика не зависит от деталей реализации. Например, можно заменить PostgreSQL на MongoDB без необходимости редактирования кода бизнес-логики.
+
 Акторы: Есть три актора - арендадатель, арендатор, модератор. Не смешиваем код, используемый разными акторами.
 
 
