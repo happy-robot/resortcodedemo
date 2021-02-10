@@ -1,3 +1,6 @@
+#### My linkedin https://www.linkedin.com/in/amir-kapsatarov-614571b4/
+---
+
 - [На русском](#in-russian)
 - [In English](#apartment-rental-site)
 
